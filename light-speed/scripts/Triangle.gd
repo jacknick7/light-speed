@@ -9,6 +9,9 @@ export var score = 0
 signal damaged
 signal scored(add_score)
 
+func _process(delta):
+	return # change the size of the triangle with time 
+
 
 func set_triangle_type(new_type):
 	type = new_type
