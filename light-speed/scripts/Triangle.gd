@@ -15,22 +15,25 @@ func _process(delta):
 
 func set_triangle_type(new_type):
 	type = new_type
+	var type_str
 	match type:
 		DAMAGE:
-			$AnimatedSprite.animation = "damage"
+			type_str = "damage"
 			score = 0
 		SCORE_0:
-			$AnimatedSprite.animation = "score0"
+			type_str = "score0"
 			score = 100
 		SCORE_1:
-			$AnimatedSprite.animation = "score1"
+			type_str = "score1"
 			score = 250
 		SCORE_2:
-			$AnimatedSprite.animation = "score2"
+			type_str = "score2"
 			score = 600
 		EMPTY:
-			$AnimatedSprite.animation = "empty"
+			type_str = "empty"
 			score = 0
+	$AnimatedSprite.animation = type_str
+	$AnimatedSprite.frame = randi() % $AnimatedSprite.get_sprite_frames().get_frame_count("damage")
 
 
 func _on_Triangle_area_entered(area):	

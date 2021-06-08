@@ -6,12 +6,32 @@ var triangle_matrix = []
 
 enum {DAMAGE, SCORE_0, SCORE_1, SCORE_2, EMPTY}
 var triangle_prob = [DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,SCORE_0,
-SCORE_1,SCORE_2,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,]
+SCORE_1,SCORE_2,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE]
 
 
 func _ready():
-	build_matrix()
+	build_matrix_new()
 	
+
+
+func build_matrix_new():
+	var screen_size = get_viewport().size
+	var triangles_n = int(screen_size.y / 192)
+	var triangles_m = int(screen_size.x / 128)
+	if (triangles_m + 1) * 128 - 64 <= screen_size.x:
+		triangles_m += 1
+	if (triangles_n + 1) * 192 - 64 <= screen_size.y:
+		triangles_n += 1
+	for i in range(triangles_n):
+		for j in range(triangles_m):
+			var triangle = Triangle.instance()
+			var pos_x = j * 128
+			var pos_y = i * 192
+			triangle.position = Vector2(pos_x,pos_y)
+			triangle.set_triangle_type(make_choice())
+			triangle_matrix.append(triangle)
+			add_child(triangle)
+
 
 func build_matrix():
 	var screen_size = get_viewport().size

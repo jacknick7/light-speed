@@ -47,19 +47,19 @@ animations = [ {
 } ]
 
 [node name="Triangle" type="Area2D"]
+scale = Vector2( 0.25, 0.25 )
 script = ExtResource( 17 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 0.4, 0.2 )
 frames = SubResource( 1 )
 animation = "damage"
-frame = 1
+frame = 2
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( 0, -51.2, -102.4, 51.2, 102.4, 51.2 )
+polygon = PoolVector2Array( 0, -256, -256, -128, -256, 128, 0, 256, 256, 128, 256, -128 )
 
 [connection signal="area_entered" from="." to="." method="_on_Triangle_area_entered"]
