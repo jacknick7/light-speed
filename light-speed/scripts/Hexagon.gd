@@ -6,6 +6,7 @@ enum {DAMAGE, SCORE_0, SCORE_1, SCORE_2, EMPTY}
 var type
 var score
 var time
+var original_scale
 
 signal damaged
 signal scored(add_score)
@@ -14,18 +15,18 @@ signal scored(add_score)
 func _ready():
 	if type == null:
 		set_type(DAMAGE)
+	# Change initial time of each hexagon to generate a special effect with the breathing?
 	time = 0
+	original_scale = scale
 
 
-# TODO: fix this mess
 func _process(delta):
-	time +=  delta
+	# Breathing effect by modifing hexagon scale
+	time += delta
 	if time >= (2 * PI):
 		time = time - (2 * PI)
-	var min_scale = (sin(time) / 2) * 0.25
-	#print(str(min_scale))
-	#scale = scale - Vector2(min_scale,min_scale)
-	return # change the size of the triangle with time 
+	var offset_scale = 0.015 + (sin(time) * 0.015) # offset_scale: [0,0.3]
+	scale = original_scale - Vector2(offset_scale,offset_scale)
 
 
 func set_type(new_type):
@@ -56,7 +57,7 @@ func get_type():
 	return type
 
 
-func _on_Triangle_area_entered(area):	
+func _on_Triangle_area_entered(area):
 	if type == DAMAGE:
 		emit_signal("damaged")
 	elif type != EMPTY:

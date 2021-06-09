@@ -1,11 +1,11 @@
 extends Node
 
 
-export (PackedScene) var Triangle
-var triangle_matrix = []
+export (PackedScene) var Hexagon
+var hexagon_matrix = []
 
 enum {DAMAGE, SCORE_0, SCORE_1, SCORE_2, EMPTY}
-var triangle_prob = [DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,SCORE_0,
+var hexagon_prob = [DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,SCORE_0,
 SCORE_1,SCORE_2,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE]
 
 
@@ -14,36 +14,37 @@ func _ready():
 
 
 # TODO: fix the limits (x,y) where some empty spaces may appear (look at the bottom)
+# TODO: add minimum space between hexagons to avoid trigger signal
 func build_matrix():
 	var screen_size = get_viewport().size
-	var triangles_n = int(screen_size.y / 96)
-	var triangles_m = int(screen_size.x / 128)
-	if (triangles_m + 1) * 128 - 64 <= screen_size.x:
-		triangles_m += 1
-	if (triangles_n + 1) * 96 - 64 <= screen_size.y:
-		triangles_n += 1
-	for i in range(triangles_n):
-		for j in range(triangles_m):
-			var triangle = Triangle.instance()
+	var hexagons_n = int(screen_size.y / 96)
+	var hexagons_m = int(screen_size.x / 128)
+	if (hexagons_m + 1) * 128 - 64 <= screen_size.x:
+		hexagons_m += 1
+	if (hexagons_n + 1) * 96 - 64 <= screen_size.y:
+		hexagons_n += 1
+	for i in range(hexagons_n):
+		for j in range(hexagons_m):
+			var hexagon = Hexagon.instance()
 			var pos_x = j * 128
 			if i % 2 != 0:
 				pos_x += 64
 			var pos_y = i * 96
-			triangle.position = Vector2(pos_x,pos_y)
-			triangle.set_type(make_choice())
-			triangle_matrix.append(triangle)
-			add_child(triangle)
+			hexagon.position = Vector2(pos_x,pos_y)
+			hexagon.set_type(make_choice())
+			hexagon_matrix.append(hexagon)
+			add_child(hexagon)
 
 
 func make_choice():
-	var i = randi() % triangle_prob.size()
-	return triangle_prob[i]
+	var i = randi() % hexagon_prob.size()
+	return hexagon_prob[i]
 
 
 func _on_Timer_timeout():
-	for triangle in triangle_matrix:
-		if triangle.get_type() == DAMAGE || triangle.get_type() == EMPTY:
-			triangle.set_type(make_choice())
+	for hexagon in hexagon_matrix:
+		if hexagon.get_type() == DAMAGE || hexagon.get_type() == EMPTY:
+			hexagon.set_type(make_choice())
 		else:
-			triangle.set_type(EMPTY)
+			hexagon.set_type(EMPTY)
 
