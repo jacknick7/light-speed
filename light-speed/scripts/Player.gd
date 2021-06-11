@@ -1,16 +1,31 @@
 extends KinematicBody2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var velocity
+var max_velocity = 0.125
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$AnimatedSprite.animation = "idle"
+	position = Vector2(500,500) # For testing, remove once done
+	velocity = 0
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+# TODO: adjust the multipliers to delta for best inherce feeling & control
+# TODO: add space Input makes ship jump
+func _process(delta):
+	if Input.is_action_pressed("ui_right"):
+		$AnimatedSprite.animation = "turn_left"
+		velocity = min(velocity+(delta*0.25),max_velocity)
+	elif Input.is_action_pressed("ui_left"):
+		$AnimatedSprite.animation = "turn_right"
+		velocity = max(velocity-(delta*0.25),-max_velocity)
+	else:
+		$AnimatedSprite.animation = "idle"
+		if velocity > 0:
+			velocity = max(velocity-(delta*0.25),0)
+		elif velocity < 0:
+			velocity = min(velocity+(delta*0.25),0)
+	if velocity != 0:		
+		rotation += velocity
+		# Make rotation between [0,2*PI] here
+	print(str(rotation))
