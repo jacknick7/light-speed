@@ -60,7 +60,7 @@ func get_type():
 
 
 func _on_Hexagon_area_entered(_area):
-	print("collide")
+	#print("collide")
 	if type == DAMAGE:
 		emit_signal("damaged")
 	elif type != EMPTY:
