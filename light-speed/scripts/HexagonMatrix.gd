@@ -13,16 +13,19 @@ func _ready():
 	build_matrix()
 
 
-# TODO: fix the limits (x,y) where some empty spaces may appear (look at the bottom)
-# TODO: add minimum space between hexagons to avoid trigger signal
+# TODO: find out why get_viewport().size returns inacurate data when resolution is > 1080p
 func build_matrix():
 	var screen_size = get_viewport().size
-	var hexagons_n = int(screen_size.y / 96)
-	var hexagons_m = int(screen_size.x / 128)
-	if (hexagons_m + 1) * 128 - 64 <= screen_size.x:
+	var hexagons_n = int(screen_size.y / 96) + 1
+	var hexagons_m = int(screen_size.x / 128) + 1	
+	#print("y: " + str(screen_size.y) + ' ' + str((hexagons_n-1)*96) + ' ' + str(hexagons_n))
+	#print("x: " + str(screen_size.x) + ' ' + str((hexagons_m-1)*128) + ' ' + str(hexagons_m))
+	if screen_size.x - ((hexagons_m - 1) * 128) - 64 > 0:
 		hexagons_m += 1
-	if (hexagons_n + 1) * 96 - 64 <= screen_size.y:
-		hexagons_n += 1
+	if screen_size.y - ((hexagons_n - 1) * 96) - 32 > 0:
+		hexagons_n += 1	
+	#print("y: " + str(screen_size.y) + ' ' + str((hexagons_n-1)*96) + ' ' + str(hexagons_n))
+	#print("x: " + str(screen_size.x) + ' ' + str((hexagons_m-1)*128) + ' ' + str(hexagons_m))
 	for i in range(hexagons_n):
 		for j in range(hexagons_m):
 			var hexagon = Hexagon.instance()
@@ -47,4 +50,3 @@ func _on_Timer_timeout():
 			hexagon.set_type(make_choice())
 		else:
 			hexagon.set_type(EMPTY)
-

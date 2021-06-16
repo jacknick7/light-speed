@@ -1,5 +1,7 @@
 extends Area2D
 
+# CollisionPolygon2D dimensions are 1px less than the size of the sprite to
+# avoid trigger _on_Hexagon_area_entered() with other hexagons
 
 enum {DAMAGE, SCORE_0, SCORE_1, SCORE_2, EMPTY}
 
@@ -57,7 +59,8 @@ func get_type():
 	return type
 
 
-func _on_Triangle_area_entered(area):
+func _on_Hexagon_area_entered(_area):
+	print("collide")
 	if type == DAMAGE:
 		emit_signal("damaged")
 	elif type != EMPTY:
