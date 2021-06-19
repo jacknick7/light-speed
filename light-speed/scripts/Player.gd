@@ -17,7 +17,7 @@ func _process(delta):
 		var dis_rotation = rotation - (PI / 2)
 		var new_direction = Vector2(cos(dis_rotation),sin(dis_rotation)) 
 		# Normalize new_direction vector?
-		var new_position = position + (new_direction * 192)
+		var new_position = position + (new_direction * Vector2(256,192))
 		# Here new_position must be converted to the center of the nearest hexagon
 		position = new_position
 	elif Input.is_action_pressed("ui_right"):
@@ -39,4 +39,41 @@ func _process(delta):
 			rotation -= 2 * PI 
 		elif rotation < 0:
 			rotation += 2 * PI
+		update_position_easy()
 	#print(str(rotation))
+
+# TODO: fix this
+func update_position_easy():
+	var new_pos
+	var dis_rotation = rotation - ((3*PI) / 4)
+	print(str(rotation))
+	#if ((dis_rotation >= ((23 * PI) / 12)) && (dis_rotation < (2 * PI))) || ((dis_rotation >= 0) && (dis_rotation < (PI / 12))):
+	#	new_pos = Vector2(256,0)
+	if dis_rotation >= (PI / 12) && dis_rotation < (PI / 4):
+		new_pos = Vector2(192,-92)
+	elif dis_rotation >= (PI / 4) && dis_rotation < ((5 * PI) / 12):
+		new_pos = Vector2(128,-184)
+	elif dis_rotation >= ((5 * PI) / 12) && dis_rotation < ((7 * PI) / 12):
+		new_pos = Vector2(0,-184)
+	elif dis_rotation >= ((7 * PI) / 12) && dis_rotation < ((3 * PI) / 4):
+		new_pos = Vector2(-128,-184)
+	elif dis_rotation >= ((3 * PI) / 4) && dis_rotation < ((11 * PI) / 12):
+		new_pos = Vector2(-192,-92)
+	elif dis_rotation >= ((11 * PI) / 12) && dis_rotation < ((13 * PI) / 12):
+		new_pos = Vector2(-256,0)
+	elif dis_rotation >= ((13 * PI) / 12) && dis_rotation < ((5 * PI) / 4):
+		new_pos = Vector2(-192,92)
+	elif dis_rotation >= ((5 * PI) / 4) && dis_rotation < ((17 * PI) / 12):
+		new_pos = Vector2(-128,184)
+	elif dis_rotation >= ((17 * PI) / 12) && dis_rotation < ((19 * PI) / 12):
+		new_pos = Vector2(0,184)
+	elif dis_rotation >= ((19 * PI) / 12) && dis_rotation < ((7 * PI) / 4):
+		new_pos = Vector2(128,184)
+	elif dis_rotation >= ((7 * PI) / 4) && dis_rotation < ((23 * PI) / 12):
+		new_pos = Vector2(192,92)
+	else:
+		new_pos = Vector2(256,0)
+		print("ERROR")
+	# Here new_position must be converted to the center of the nearest hexagon
+	print(str(new_pos))
+	$AnimatedSprite2.position = position + new_pos
