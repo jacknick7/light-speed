@@ -6,7 +6,7 @@ var ini_position
 
 func _ready():
 	ini_position = $HexagonMatrix.build_matrix()
-	$Player.position = ini_position
+	$Player.set_position(ini_position)
 	print(str(ini_position))
 
 

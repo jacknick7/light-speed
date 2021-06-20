@@ -40,7 +40,7 @@ func build_matrix():
 				hexagon.set_type(make_choice())
 			hexagon_matrix.append(hexagon)
 			add_child(hexagon)
-	return Vector2(64 + int(hexagons_m / 2) * 128, int(hexagons_n / 2) * 96)
+	return Vector2(64 + int(hexagons_m / 2) * 128, int(hexagons_n / 2) * 96) # Fix the hardcoded 64
 
 
 func make_choice():
