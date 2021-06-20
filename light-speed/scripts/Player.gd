@@ -2,7 +2,7 @@ extends Node2D
 
 
 var velocity
-var max_velocity = 0.125
+const max_velocity = 0.125
 
 
 func _ready():

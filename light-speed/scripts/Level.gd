@@ -5,6 +5,7 @@ var ini_position
 
 
 func _ready():
+	randomize()
 	ini_position = $HexagonMatrix.build_matrix()
 	$Player.set_position(ini_position)
 	print(str(ini_position))

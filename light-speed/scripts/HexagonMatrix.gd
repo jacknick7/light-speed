@@ -17,15 +17,17 @@ SCORE_1,SCORE_2,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE]
 func build_matrix():
 	var screen_size = get_viewport().size
 	var hexagons_n = int(screen_size.y / 96) + 1
-	var hexagons_m = int(screen_size.x / 128) + 1	
+	var hexagons_m = int(screen_size.x / 128) + 1
 	#print("y: " + str(screen_size.y) + ' ' + str((hexagons_n-1)*96) + ' ' + str(hexagons_n))
 	#print("x: " + str(screen_size.x) + ' ' + str((hexagons_m-1)*128) + ' ' + str(hexagons_m))
 	if screen_size.x - ((hexagons_m - 1) * 128) - 64 > 0:
 		hexagons_m += 1
 	if screen_size.y - ((hexagons_n - 1) * 96) - 32 > 0:
-		hexagons_n += 1	
+		hexagons_n += 1
 	#print("y: " + str(screen_size.y) + ' ' + str((hexagons_n-1)*96) + ' ' + str(hexagons_n))
 	#print("x: " + str(screen_size.x) + ' ' + str((hexagons_m-1)*128) + ' ' + str(hexagons_m))
+	var mid_y = int(hexagons_n / 2)
+	var mid_x = int(hexagons_m / 2)
 	for i in range(hexagons_n):
 		for j in range(hexagons_m):
 			var hexagon = Hexagon.instance()
@@ -34,13 +36,16 @@ func build_matrix():
 				pos_x += 64
 			var pos_y = i * 96
 			hexagon.position = Vector2(pos_x,pos_y)
-			if i == int(hexagons_n / 2) && j == int(hexagons_m / 2):
+			if i == mid_y && j == mid_x:
 				hexagon.set_type(EMPTY)
 			else:
 				hexagon.set_type(make_choice())
 			hexagon_matrix.append(hexagon)
 			add_child(hexagon)
-	return Vector2(64 + int(hexagons_m / 2) * 128, int(hexagons_n / 2) * 96) # Fix the hardcoded 64
+	var ini_pos = Vector2(mid_x * 128, mid_y * 96)
+	if mid_y % 2 != 0:  # Add displacement of hexagon's center if row is even
+		ini_pos.x += 64
+	return ini_pos
 
 
 func make_choice():
