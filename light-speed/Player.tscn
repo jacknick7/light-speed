@@ -26,11 +26,11 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=2]
 radius = 25.4939
 height = 27.9095
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 1 ), ExtResource( 4 ) ],
 "loop": true,
@@ -38,11 +38,8 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="Node"]
 script = ExtResource( 7 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="PlayerShip" type="KinematicBody2D" parent="."]
 
@@ -53,11 +50,11 @@ animation = "turn_right"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerShip"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="PlayerShipNext" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.1, 0.1 )
-frames = SubResource( 2 )
+frames = SubResource( 3 )
 animation = "idle"
 frame = 1
 playing = true

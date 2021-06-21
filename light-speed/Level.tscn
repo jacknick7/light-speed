@@ -5,7 +5,7 @@
 [ext_resource path="res://HexagonMatrix.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/Level.gd" type="Script" id=4]
 
-[node name="Level" type="Node2D"]
+[node name="Level" type="Node"]
 script = ExtResource( 4 )
 
 [node name="Background" parent="." instance=ExtResource( 1 )]
@@ -13,7 +13,6 @@ script = ExtResource( 4 )
 [node name="HexagonMatrix" parent="." instance=ExtResource( 3 )]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-z_index = 1
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
