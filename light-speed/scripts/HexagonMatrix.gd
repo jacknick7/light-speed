@@ -3,21 +3,19 @@ extends Node
 
 export (PackedScene) var Hexagon
 var hexagon_matrix = []
+var hexagons_n
+var hexagons_m
 
 enum {DAMAGE, SCORE_0, SCORE_1, SCORE_2, EMPTY}
 var hexagon_prob = [DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,SCORE_0,
 SCORE_1,SCORE_2,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE]
 
 
-#func _ready():
-#	build_matrix()
-
-
 # TODO: find out why get_viewport().size returns inacurate data when resolution is > 1080p
 func build_matrix():
 	var screen_size = get_viewport().size
-	var hexagons_n = int(screen_size.y / 96) + 1
-	var hexagons_m = int(screen_size.x / 128) + 1
+	hexagons_n = int(screen_size.y / 96) + 1
+	hexagons_m = int(screen_size.x / 128) + 1
 	#print("y: " + str(screen_size.y) + ' ' + str((hexagons_n-1)*96) + ' ' + str(hexagons_n))
 	#print("x: " + str(screen_size.x) + ' ' + str((hexagons_m-1)*128) + ' ' + str(hexagons_m))
 	if screen_size.x - ((hexagons_m - 1) * 128) - 64 > 0:
@@ -26,8 +24,6 @@ func build_matrix():
 		hexagons_n += 1
 	#print("y: " + str(screen_size.y) + ' ' + str((hexagons_n-1)*96) + ' ' + str(hexagons_n))
 	#print("x: " + str(screen_size.x) + ' ' + str((hexagons_m-1)*128) + ' ' + str(hexagons_m))
-	var mid_y = int(hexagons_n / 2)
-	var mid_x = int(hexagons_m / 2)
 	for i in range(hexagons_n):
 		for j in range(hexagons_m):
 			var hexagon = Hexagon.instance()
@@ -36,16 +32,19 @@ func build_matrix():
 				pos_x += 64
 			var pos_y = i * 96
 			hexagon.position = Vector2(pos_x,pos_y)
-			if i == mid_y && j == mid_x:
-				hexagon.set_type(EMPTY)
-			else:
-				hexagon.set_type(make_choice())
+			hexagon.set_type(make_choice())
 			hexagon_matrix.append(hexagon)
 			add_child(hexagon)
-	var ini_pos = Vector2(mid_x * 128, mid_y * 96)
-	if mid_y % 2 != 0:  # Add displacement of hexagon's center if row is even
+	var ini_pos = Vector2(int(hexagons_m / 2) * 128, int(hexagons_n / 2) * 96)
+	if int(hexagons_n / 2) % 2 != 0:  # Add displacement of hexagon's center if row is even
 		ini_pos.x += 64
 	return ini_pos
+
+
+func start_game():
+	var mid_y = int(hexagons_n / 2)
+	var mid_x = int(hexagons_m / 2)
+	hexagon_matrix[mid_y * hexagons_m + mid_x].set_type(EMPTY)
 
 
 func make_choice():

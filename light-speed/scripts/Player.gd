@@ -1,6 +1,6 @@
 extends Node
 
-
+var easy
 var velocity
 const max_velocity = 0.125
 
@@ -8,7 +8,10 @@ const max_velocity = 0.125
 func _ready():
 	$PlayerShip/AnimatedSprite.animation = "idle"
 	velocity = 0
+	easy = true
 	update_position_easy()
+	$PlayerShip.hide()
+	$PlayerShipNext.hide()
 
 
 # TODO: adjust the multipliers to delta for best inherce feeling & control
@@ -16,7 +19,8 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("ui_select"):
 		$PlayerShip.position += new_position()
-		update_position_easy()
+		if easy:
+			update_position_easy()
 	elif Input.is_action_pressed("ui_right"):
 		$PlayerShip/AnimatedSprite.animation = "turn_left"
 		velocity = min(velocity + (delta * 0.25), max_velocity)
@@ -36,7 +40,8 @@ func _process(delta):
 			$PlayerShip.rotation -= 2 * PI 
 		elif $PlayerShip.rotation < 0:
 			$PlayerShip.rotation += 2 * PI
-		update_position_easy()
+		if easy:
+			update_position_easy()
 	#print(str(rotation))
 
 
@@ -78,7 +83,11 @@ func new_position():
 	return new_pos
 
 
-func set_position(pos):
+func start_game(dif, pos):
+	easy = dif
 	$PlayerShip.position = pos
-	update_position_easy()
+	$PlayerShip.show()
+	if easy:
+		$PlayerShipNext.show()
+		update_position_easy()
 

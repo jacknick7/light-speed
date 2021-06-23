@@ -36,9 +36,7 @@ func _on_StartButton_pressed():
 	$VBoxContainer.hide()
 	$TitleLabel.hide()
 	$ScoreLabel.show()
-	emit_signal("start_game", true)	
-	yield(get_tree().create_timer(1), "timeout")
-	show_game_over()
+	emit_signal("start_game", false)
 
 
 func _on_MessageTimer_timeout():
