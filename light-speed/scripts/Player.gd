@@ -91,3 +91,10 @@ func start_game(dif, pos):
 		$PlayerShipNext.show()
 		update_position_easy()
 
+
+func trigger_hexagon():
+	# Each time hexagons types are updated we force the player to trigger the current one,
+	# maybe there's a better way to do this?
+	$PlayerShip/CollisionShape2D.disabled = true
+	$PlayerShip/CollisionShape2D.disabled = false
+

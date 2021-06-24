@@ -24,8 +24,11 @@ func show_game_over():
 	$VBoxContainer.show()
 
 
-func update_score(score):
-	$ScoreLabel.text = str(score)
+func update_score(score, show_score):
+	if show_score > 0:
+		$ScoreLabel.text = str(score) + "\n+" + str(show_score)
+	else:
+		$ScoreLabel.text = str(score)
 
 
 func _on_ExitButton_pressed():

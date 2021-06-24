@@ -12,7 +12,7 @@ SCORE_1,SCORE_2,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE]
 
 
 # TODO: find out why get_viewport().size returns inacurate data when resolution is > 1080p
-func build_matrix():
+func build_matrix(target_node):
 	var screen_size = get_viewport().size
 	hexagons_n = int(screen_size.y / 96) + 1
 	hexagons_m = int(screen_size.x / 128) + 1
@@ -27,6 +27,8 @@ func build_matrix():
 	for i in range(hexagons_n):
 		for j in range(hexagons_m):
 			var hexagon = Hexagon.instance()
+			hexagon.connect("damaged", target_node, "_on_Hexagon_damaged")
+			hexagon.connect("scored", target_node, "_on_Hexagon_scored")
 			var pos_x = j * 128
 			if i % 2 != 0:
 				pos_x += 64

@@ -56,10 +56,11 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "damage"
-frame = 4
+frame = 1
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( 0, -255, -255, -127, -255, 127, 0, 255, 255, 127, 255, -127 )
 
 [connection signal="area_entered" from="." to="." method="_on_Hexagon_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_Hexagon_body_entered"]

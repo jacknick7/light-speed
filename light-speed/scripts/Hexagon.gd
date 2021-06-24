@@ -59,9 +59,10 @@ func get_type():
 	return type
 
 
-func _on_Hexagon_area_entered(_area):
-	#print("collide")
+func _on_Hexagon_body_entered(_body):
+	print("collide")
 	if type == DAMAGE:
 		emit_signal("damaged")
 	elif type != EMPTY:
 		emit_signal("scored", score)
+
