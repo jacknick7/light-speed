@@ -20,6 +20,7 @@ func show_game_over():
 	yield($MessageTimer, "timeout")
 	$ScoreLabel.hide()
 	$TitleLabel.show()
+	$TextureRect.show()
 	yield(get_tree().create_timer(1), "timeout")
 	$VBoxContainer.show()
 
@@ -39,6 +40,7 @@ func _on_StartButton_pressed():
 	$VBoxContainer.hide()
 	$TitleLabel.hide()
 	$ScoreLabel.show()
+	$TextureRect.hide()
 	emit_signal("start_game", false)
 
 

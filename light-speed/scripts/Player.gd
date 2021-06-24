@@ -3,9 +3,10 @@ extends Node
 var easy
 var velocity
 const max_velocity = 0.125
-
+var playing
 
 func _ready():
+	playing = false
 	$PlayerShip/AnimatedSprite.animation = "idle"
 	velocity = 0
 	easy = true
@@ -17,6 +18,11 @@ func _ready():
 # TODO: adjust the multipliers to delta for best inherce feeling & control
 # TODO: improve ship jump by adding its own animation & sound
 func _process(delta):
+	if playing:
+		handle_input(delta)
+
+
+func handle_input(delta):
 	if Input.is_action_just_pressed("ui_select"):
 		$PlayerShip.position += new_position()
 		if easy:
@@ -85,6 +91,7 @@ func new_position():
 
 func start_game(dif, pos):
 	easy = dif
+	playing = true
 	velocity = 0
 	$PlayerShip.position = pos
 	$PlayerShip.rotation = 0
@@ -96,8 +103,9 @@ func start_game(dif, pos):
 	yield(get_tree().create_timer(0.001), "timeout")
 	$PlayerShip/CollisionShape2D.disabled = false
 
-# TODO: fix destroyed animation not working, this happens because the update function changes to idle
+
 func game_over():
+	playing = false
 	$PlayerShip/AnimatedSprite.animation = "destroyed"
 	$PlayerShip/CollisionShape2D.set_deferred("disabled", true)
 	if (easy):
@@ -109,6 +117,6 @@ func game_over():
 func trigger_hexagon():
 	# Each time hexagons types are updated we force the player to trigger the current one,
 	# maybe there's a better way to do this?
-	$PlayerShip/CollisionShape2D.disabled = true
-	$PlayerShip/CollisionShape2D.disabled = false
+	$PlayerShip/CollisionShape2D.set_deferred("disabled", true)
+	$PlayerShip/CollisionShape2D.set_deferred("disabled", false)
 
