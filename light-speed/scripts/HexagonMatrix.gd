@@ -49,6 +49,11 @@ func start_game():
 	hexagon_matrix[mid_y * hexagons_m + mid_x].set_type(EMPTY)
 
 
+func game_over():
+	for hexagon in hexagon_matrix:
+		hexagon.set_type(make_choice())
+
+
 func make_choice():
 	var i = randi() % hexagon_prob.size()
 	return hexagon_prob[i]

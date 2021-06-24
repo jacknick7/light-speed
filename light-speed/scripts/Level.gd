@@ -14,10 +14,19 @@ func _ready():
 func start_game(easy):
 	#print(easy)
 	$HexagonMatrix.start_game()
-	$Player.start_game(easy, ini_position)
 	$UpdateTimer.start()
 	$ScoreTimer.start()
 	score = 0
+	$HUD.update_score(score, 0)
+	$Player.start_game(easy, ini_position)
+
+
+func game_over():
+	$Player.game_over()
+	$UpdateTimer.stop()
+	$ScoreTimer.stop()
+	$HUD.show_game_over()
+	$HexagonMatrix.game_over()
 
 
 func _on_UpdateTimer_timeout():
@@ -32,10 +41,11 @@ func _on_ScoreTimer_timeout():
 # TODO: look how to handle _on_Hexagon_damaged & _on_Hexagon_scored so it's only
 # active between start_game & game_over
 func _on_Hexagon_damaged():
-	print("Damaged")
+	#print("Damaged")
+	game_over()
 
 
 func _on_Hexagon_scored(add_score):
-	print("Scored: " + str(add_score))
+	#print("Scored: " + str(add_score))
 	score += add_score
 	$HUD.update_score(score, add_score)

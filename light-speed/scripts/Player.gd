@@ -85,11 +85,25 @@ func new_position():
 
 func start_game(dif, pos):
 	easy = dif
+	velocity = 0
 	$PlayerShip.position = pos
+	$PlayerShip.rotation = 0
 	$PlayerShip.show()
 	if easy:
 		$PlayerShipNext.show()
 		update_position_easy()
+	# If done inmediatly player collides with previous hexagon type, look if this can be handle better
+	yield(get_tree().create_timer(0.001), "timeout")
+	$PlayerShip/CollisionShape2D.disabled = false
+
+# TODO: fix destroyed animation not working, this happens because the update function changes to idle
+func game_over():
+	$PlayerShip/AnimatedSprite.animation = "destroyed"
+	$PlayerShip/CollisionShape2D.set_deferred("disabled", true)
+	if (easy):
+		$PlayerShipNext.hide()
+	yield(get_tree().create_timer(4), "timeout")
+	$PlayerShip.hide()
 
 
 func trigger_hexagon():
