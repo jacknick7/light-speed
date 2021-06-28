@@ -15,7 +15,8 @@ func _on_MainMenu_instructions():
 
 
 func _on_MainMenu_options():
-	pass # Replace with function body.
+	$MainMenu.hide()
+	$OptionsMenu.show()
 
 
 func _on_MainMenu_credits():
@@ -40,4 +41,9 @@ func _on_InstructionsMenu_back():
 
 func _on_CreditsMenu_back():
 	$CreditsMenu.hide()
+	$MainMenu.show()
+
+
+func _on_OptionsMenu_back():
+	$OptionsMenu.hide()
 	$MainMenu.show()

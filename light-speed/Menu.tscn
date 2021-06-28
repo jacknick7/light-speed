@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://MainMenu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://StartMenu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/Menu.gd" type="Script" id=3]
 [ext_resource path="res://InstructionsMenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://CreditsMenu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://OptionsMenu.tscn" type="PackedScene" id=6]
 
 [node name="Menu" type="Node"]
 script = ExtResource( 3 )
@@ -17,6 +18,9 @@ visible = false
 [node name="InstructionsMenu" parent="." instance=ExtResource( 4 )]
 visible = false
 
+[node name="OptionsMenu" parent="." instance=ExtResource( 6 )]
+visible = false
+
 [node name="CreditsMenu" parent="." instance=ExtResource( 5 )]
 visible = false
 
@@ -27,4 +31,5 @@ visible = false
 [connection signal="back" from="StartMenu" to="." method="_on_StartMenu_back"]
 [connection signal="start_game" from="StartMenu" to="." method="_on_StartMenu_start_game"]
 [connection signal="back" from="InstructionsMenu" to="." method="_on_InstructionsMenu_back"]
+[connection signal="back" from="OptionsMenu" to="." method="_on_OptionsMenu_back"]
 [connection signal="back" from="CreditsMenu" to="." method="_on_CreditsMenu_back"]
