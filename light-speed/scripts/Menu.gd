@@ -4,6 +4,11 @@ extends Node
 signal start_game(easy)
 
 
+func show_menu():
+	$BlurColorRect.show()
+	$MainMenu.show()
+
+
 func _on_MainMenu_start():
 	$MainMenu.hide()
 	$StartMenu.show()
@@ -26,6 +31,7 @@ func _on_MainMenu_credits():
 
 func _on_StartMenu_start_game(easy):
 	$StartMenu.hide()
+	$BlurColorRect.hide()
 	emit_signal("start_game", easy)
 
 

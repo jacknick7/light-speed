@@ -12,7 +12,7 @@ SCORE_1,SCORE_2,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE]
 
 
 # TODO: find out why get_viewport().size returns inacurate data when resolution is > 1080p
-func build_matrix(target_node):
+func initialize():
 	var screen_size = get_viewport().size
 	hexagons_n = int(screen_size.y / 96) + 1
 	hexagons_m = int(screen_size.x / 128) + 1
@@ -27,8 +27,6 @@ func build_matrix(target_node):
 	for i in range(hexagons_n):
 		for j in range(hexagons_m):
 			var hexagon = Hexagon.instance()
-			hexagon.connect("damaged", target_node, "_on_Hexagon_damaged")
-			hexagon.connect("scored", target_node, "_on_Hexagon_scored")
 			var pos_x = j * 128
 			if i % 2 != 0:
 				pos_x += 64
@@ -43,14 +41,19 @@ func build_matrix(target_node):
 	return ini_pos
 
 
-func start_game():
+func start_game(target_node):
 	var mid_y = int(hexagons_n / 2)
 	var mid_x = int(hexagons_m / 2)
 	hexagon_matrix[mid_y * hexagons_m + mid_x].set_type(EMPTY)
-
-
-func game_over():
 	for hexagon in hexagon_matrix:
+			hexagon.connect("damaged", target_node, "_on_Hexagon_damaged")
+			hexagon.connect("scored", target_node, "_on_Hexagon_scored")
+
+
+func game_over(target_node):
+	for hexagon in hexagon_matrix:
+		hexagon.disconnect("damaged", target_node, "_on_Hexagon_damaged")
+		hexagon.disconnect("scored", target_node, "_on_Hexagon_scored")
 		hexagon.set_type(make_choice())
 
 

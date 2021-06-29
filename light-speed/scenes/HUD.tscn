@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://fonts/xolonium/Xolonium-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://scripts/HUD.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=3]
+size = 42
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 84
+font_data = ExtResource( 1 )
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchor_right = 1.0
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 3 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MessageLabel" type="Label" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -39.0
+margin_bottom = 39.0
+custom_fonts/font = SubResource( 5 )
+text = "Message"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MessageTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="MessageTimer" to="." method="_on_MessageTimer_timeout"]

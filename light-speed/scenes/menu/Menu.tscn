@@ -1,14 +1,26 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://MainMenu.tscn" type="PackedScene" id=1]
-[ext_resource path="res://StartMenu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/menu/MainMenu.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/menu/StartMenu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/Menu.gd" type="Script" id=3]
-[ext_resource path="res://InstructionsMenu.tscn" type="PackedScene" id=4]
-[ext_resource path="res://CreditsMenu.tscn" type="PackedScene" id=5]
-[ext_resource path="res://OptionsMenu.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/menu/InstructionsMenu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/menu/CreditsMenu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/menu/OptionsMenu.tscn" type="PackedScene" id=6]
+[ext_resource path="res://shaders/MenuBlur.shader" type="Shader" id=7]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 7 )
 
 [node name="Menu" type="Node"]
 script = ExtResource( 3 )
+
+[node name="BlurColorRect" type="ColorRect" parent="."]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="MainMenu" parent="." instance=ExtResource( 1 )]
 
