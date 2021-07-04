@@ -1,23 +1,23 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://fonts/xolonium/Xolonium-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scripts/MainMenu.gd" type="Script" id=2]
+[ext_resource path="res://fonts/quantum/quantflt.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 128
-font_data = ExtResource( 1 )
+font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 64
-font_data = ExtResource( 1 )
+font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 32
-font_data = ExtResource( 1 )
+font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 64
-font_data = ExtResource( 1 )
+font_data = ExtResource( 3 )
 
 [node name="MainMenu" type="MarginContainer"]
 anchor_right = 1.0
@@ -38,85 +38,95 @@ margin_right = 1480.0
 margin_bottom = 820.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-margin_right = 1216.0
+margin_right = 1197.0
 margin_bottom = 740.0
 size_flags_horizontal = 3
 
 [node name="TitleLabel" type="Label" parent="HBoxContainer/VBoxContainer"]
-margin_right = 1216.0
-margin_bottom = 155.0
+margin_right = 1197.0
+margin_bottom = 133.0
 custom_fonts/font = SubResource( 1 )
 text = "Light Speed"
 
 [node name="MenuOptions" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
-margin_top = 159.0
-margin_right = 1216.0
-margin_bottom = 654.0
+margin_top = 137.0
+margin_right = 1197.0
+margin_bottom = 664.0
 size_flags_vertical = 3
 custom_constants/separation = 30
 alignment = 1
 
 [node name="StartButton" type="Button" parent="HBoxContainer/VBoxContainer/MenuOptions"]
-margin_top = 34.0
-margin_right = 180.0
-margin_bottom = 118.0
+margin_top = 72.0
+margin_right = 222.0
+margin_bottom = 145.0
+focus_mode = 0
 size_flags_horizontal = 0
 custom_fonts/font = SubResource( 2 )
 text = "Start"
+flat = true
 
 [node name="InstructionsButton" type="Button" parent="HBoxContainer/VBoxContainer/MenuOptions"]
-margin_top = 148.0
-margin_right = 406.0
-margin_bottom = 232.0
+margin_top = 175.0
+margin_right = 553.0
+margin_bottom = 248.0
+focus_mode = 0
 size_flags_horizontal = 0
 custom_fonts/font = SubResource( 2 )
 text = "Instructions"
+flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="OptionsButton" type="Button" parent="HBoxContainer/VBoxContainer/MenuOptions"]
-margin_top = 262.0
-margin_right = 270.0
-margin_bottom = 346.0
+margin_top = 278.0
+margin_right = 316.0
+margin_bottom = 351.0
+focus_mode = 0
 size_flags_horizontal = 0
 custom_fonts/font = SubResource( 2 )
 text = "Options"
+flat = true
 
 [node name="CreditsButton" type="Button" parent="HBoxContainer/VBoxContainer/MenuOptions"]
-margin_top = 376.0
-margin_right = 247.0
-margin_bottom = 460.0
+margin_top = 381.0
+margin_right = 315.0
+margin_bottom = 454.0
+focus_mode = 0
 size_flags_horizontal = 0
 custom_fonts/font = SubResource( 2 )
 text = "Credits"
+flat = true
 
 [node name="VersionLabel" type="Label" parent="HBoxContainer/VBoxContainer"]
-margin_top = 658.0
-margin_right = 1216.0
-margin_bottom = 697.0
+margin_top = 668.0
+margin_right = 1197.0
+margin_bottom = 702.0
 custom_fonts/font = SubResource( 3 )
 text = "ver 1.0"
 
 [node name="MadeLabel" type="Label" parent="HBoxContainer/VBoxContainer"]
-margin_top = 701.0
-margin_right = 1216.0
+margin_top = 706.0
+margin_right = 1197.0
 margin_bottom = 740.0
 custom_fonts/font = SubResource( 3 )
 text = "Made with Godot"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 1220.0
+margin_left = 1201.0
 margin_right = 1360.0
 margin_bottom = 740.0
 alignment = 2
 
 [node name="ExitButton" type="Button" parent="HBoxContainer/VBoxContainer2"]
-margin_top = 656.0
-margin_right = 140.0
+margin_top = 667.0
+margin_right = 159.0
 margin_bottom = 740.0
+focus_mode = 0
 custom_fonts/font = SubResource( 4 )
 text = "Exit"
+flat = true
 
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/MenuOptions/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/MenuOptions/InstructionsButton" to="." method="_on_InstructionsButton_pressed"]

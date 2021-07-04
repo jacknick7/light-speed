@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://fonts/xolonium/Xolonium-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://fonts/quantum/quantflt.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://scripts/InstructionsMenu.gd" type="Script" id=3]
 
@@ -8,15 +8,15 @@
 size = 128
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=2]
 size = 32
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=3]
 size = 21
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=4]
 size = 64
 font_data = ExtResource( 1 )
 
@@ -39,106 +39,108 @@ margin_right = 1480.0
 margin_bottom = 820.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-margin_right = 1178.0
+margin_right = 1133.0
 margin_bottom = 740.0
 size_flags_horizontal = 3
 
 [node name="TitleLabel" type="Label" parent="HBoxContainer/VBoxContainer"]
-margin_right = 1178.0
-margin_bottom = 155.0
+margin_right = 1133.0
+margin_bottom = 133.0
 custom_fonts/font = SubResource( 1 )
 text = "Light Speed"
 
 [node name="DisplayInstructions" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
-margin_top = 159.0
-margin_right = 1178.0
+margin_top = 137.0
+margin_right = 1133.0
 margin_bottom = 740.0
 size_flags_vertical = 3
 custom_constants/separation = 30
 alignment = 1
 
 [node name="InstructionsLabel" type="Label" parent="HBoxContainer/VBoxContainer/DisplayInstructions"]
-margin_top = 91.0
-margin_right = 1178.0
-margin_bottom = 130.0
-custom_fonts/font = SubResource( 7 )
+margin_top = 99.0
+margin_right = 1133.0
+margin_bottom = 133.0
+custom_fonts/font = SubResource( 2 )
 text = "Instructions:"
 
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/DisplayInstructions"]
-margin_top = 160.0
-margin_right = 1178.0
-margin_bottom = 302.0
-custom_fonts/font = SubResource( 6 )
+margin_top = 163.0
+margin_right = 1133.0
+margin_bottom = 316.0
+custom_fonts/font = SubResource( 3 )
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 autowrap = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/DisplayInstructions"]
-margin_top = 332.0
-margin_right = 1178.0
-margin_bottom = 396.0
+margin_top = 346.0
+margin_right = 1133.0
+margin_bottom = 410.0
 
 [node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/VBoxContainer/DisplayInstructions/HBoxContainer2"]
-margin_right = 587.0
+margin_right = 564.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/DisplayInstructions/HBoxContainer2/CenterContainer"]
-margin_left = 261.0
-margin_right = 325.0
+margin_left = 250.0
+margin_right = 314.0
 margin_bottom = 64.0
 texture = ExtResource( 2 )
 
 [node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer/VBoxContainer/DisplayInstructions/HBoxContainer2"]
-margin_left = 591.0
-margin_right = 1178.0
+margin_left = 568.0
+margin_right = 1133.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/DisplayInstructions/HBoxContainer2/CenterContainer2"]
-margin_left = 261.0
-margin_right = 325.0
+margin_left = 250.0
+margin_right = 314.0
 margin_bottom = 64.0
 texture = ExtResource( 2 )
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/DisplayInstructions"]
-margin_top = 426.0
-margin_right = 1178.0
-margin_bottom = 490.0
+margin_top = 440.0
+margin_right = 1133.0
+margin_bottom = 504.0
 
 [node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/VBoxContainer/DisplayInstructions/HBoxContainer3"]
-margin_right = 587.0
+margin_right = 564.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/DisplayInstructions/HBoxContainer3/CenterContainer"]
-margin_left = 261.0
-margin_right = 325.0
+margin_left = 250.0
+margin_right = 314.0
 margin_bottom = 64.0
 texture = ExtResource( 2 )
 
 [node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer/VBoxContainer/DisplayInstructions/HBoxContainer3"]
-margin_left = 591.0
-margin_right = 1178.0
+margin_left = 568.0
+margin_right = 1133.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/DisplayInstructions/HBoxContainer3/CenterContainer2"]
-margin_left = 261.0
-margin_right = 325.0
+margin_left = 250.0
+margin_right = 314.0
 margin_bottom = 64.0
 texture = ExtResource( 2 )
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 1182.0
+margin_left = 1137.0
 margin_right = 1360.0
 margin_bottom = 740.0
 alignment = 2
 
 [node name="BackButton" type="Button" parent="HBoxContainer/VBoxContainer2"]
-margin_top = 656.0
-margin_right = 178.0
+margin_top = 667.0
+margin_right = 223.0
 margin_bottom = 740.0
-custom_fonts/font = SubResource( 5 )
+focus_mode = 0
+custom_fonts/font = SubResource( 4 )
 text = "Back"
+flat = true
 
 [connection signal="pressed" from="HBoxContainer/VBoxContainer2/BackButton" to="." method="_on_BackButton_pressed"]
