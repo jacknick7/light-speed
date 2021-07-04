@@ -8,6 +8,7 @@ var score
 func _ready():
 	randomize()
 	ini_position = $HexagonMatrix.initialize()
+	$Menu.initialize()
 	#print(str(ini_position))
 
 
@@ -29,7 +30,7 @@ func game_over():
 	$HUD.show_game_over()
 	$HexagonMatrix.game_over(self)
 	yield(get_tree().create_timer(3), "timeout")
-	$Menu.show_menu()
+	$Menu.initialize()
 
 
 func _on_UpdateTimer_timeout():

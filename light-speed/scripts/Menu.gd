@@ -4,9 +4,10 @@ extends Node
 signal start_game(easy)
 
 
-func show_menu():
+func initialize():
 	$BlurColorRect.show()
 	$MainMenu.show()
+	$MainMenu.initialize()
 
 
 func _on_MainMenu_start():

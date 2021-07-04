@@ -8,14 +8,14 @@
 [ext_resource path="res://scenes/menu/OptionsMenu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://shaders/MenuBlur.shader" type="Shader" id=7]
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 7 )
 
 [node name="Menu" type="Node"]
 script = ExtResource( 3 )
 
 [node name="BlurColorRect" type="ColorRect" parent="."]
-material = SubResource( 2 )
+material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
