@@ -13,7 +13,7 @@ func _on_EasyButton_pressed():
 
 
 func _on_EasyButton_mouse_entered():
-	note.text = "Shows the next position of the ship at all times, recomended dificulty for starters."
+	note.text = "Shows the next position of the ship at all times, recommended difficulty for beginners."
 
 
 func _on_EasyButton_mouse_exited():
@@ -26,7 +26,7 @@ func _on_NormalButton_pressed():
 
 
 func _on_NormalButton_mouse_entered():
-	note.text = "Player must predict the next position of the ship, recomended to experienced players."
+	note.text = "Player must predict the next position of the ship, recommended for experienced players."
 
 
 func _on_NormalButton_mouse_exited():

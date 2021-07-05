@@ -16,7 +16,6 @@ size = 64
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=4]
-size = 18
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=5]
@@ -65,7 +64,7 @@ margin_top = 157.0
 margin_right = 1133.0
 margin_bottom = 191.0
 custom_fonts/font = SubResource( 2 )
-text = "Choose the dificulty"
+text = "Choose one difficulty..."
 
 [node name="EasyButton" type="Button" parent="HBoxContainer/VBoxContainer/MenuOptions"]
 margin_top = 221.0
@@ -93,7 +92,7 @@ __meta__ = {
 [node name="NoteLabel" type="Label" parent="HBoxContainer/VBoxContainer/MenuOptions"]
 margin_top = 427.0
 margin_right = 1133.0
-margin_bottom = 446.0
+margin_bottom = 445.0
 custom_fonts/font = SubResource( 4 )
 autowrap = true
 
