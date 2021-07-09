@@ -8,7 +8,7 @@ size = 128
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 32
+size = 64
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
@@ -57,32 +57,32 @@ custom_constants/separation = 30
 alignment = 1
 
 [node name="CreditsLabel" type="Label" parent="HBoxContainer/VBoxContainer/DisplayCredits"]
-margin_top = 205.0
+margin_top = 188.0
 margin_right = 1133.0
-margin_bottom = 239.0
+margin_bottom = 255.0
 custom_fonts/font = SubResource( 2 )
 text = "Credits:"
 
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/DisplayCredits"]
-margin_top = 269.0
+margin_top = 285.0
 margin_right = 1133.0
-margin_bottom = 292.0
+margin_bottom = 308.0
 custom_fonts/font = SubResource( 3 )
 text = "A game by BishopBit"
 autowrap = true
 
 [node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/DisplayCredits"]
-margin_top = 322.0
+margin_top = 338.0
 margin_right = 1133.0
-margin_bottom = 345.0
+margin_bottom = 361.0
 custom_fonts/font = SubResource( 3 )
 text = "Made with Godot 3.2"
 autowrap = true
 
 [node name="Label3" type="Label" parent="HBoxContainer/VBoxContainer/DisplayCredits"]
-margin_top = 375.0
+margin_top = 391.0
 margin_right = 1133.0
-margin_bottom = 398.0
+margin_bottom = 414.0
 custom_fonts/font = SubResource( 3 )
 text = "Special thanks to..."
 autowrap = true

@@ -4,19 +4,19 @@
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://scripts/OptionsMenu.gd" type="Script" id=3]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=3]
 size = 128
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
+size = 64
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
 size = 32
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
-size = 21
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 size = 64
 font_data = ExtResource( 1 )
 
@@ -46,10 +46,10 @@ size_flags_horizontal = 3
 [node name="TitleLabel" type="Label" parent="HBoxContainer/VBoxContainer"]
 margin_right = 1133.0
 margin_bottom = 133.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "Light Speed"
 
-[node name="DisplayInstructions" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+[node name="DisplayOptions" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
 margin_top = 137.0
 margin_right = 1133.0
 margin_bottom = 740.0
@@ -57,106 +57,154 @@ size_flags_vertical = 3
 custom_constants/separation = 30
 alignment = 1
 
-[node name="OptionsLabel" type="Label" parent="HBoxContainer/VBoxContainer/DisplayInstructions"]
-margin_top = 143.0
+[node name="OptionsLabel" type="Label" parent="HBoxContainer/VBoxContainer/DisplayOptions"]
+margin_top = 33.0
 margin_right = 1133.0
-margin_bottom = 177.0
+margin_bottom = 100.0
 custom_fonts/font = SubResource( 2 )
 text = "Options:"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/DisplayInstructions"]
-margin_top = 207.0
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/DisplayOptions"]
+margin_top = 130.0
 margin_right = 1133.0
-margin_bottom = 271.0
+margin_bottom = 194.0
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/DisplayInstructions/HBoxContainer2"]
-margin_top = 20.0
-margin_right = 147.0
-margin_bottom = 43.0
-custom_fonts/font = SubResource( 3 )
-text = "Resolution:"
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer2"]
+margin_top = 15.0
+margin_right = 217.0
+margin_bottom = 49.0
+custom_fonts/font = SubResource( 6 )
+text = "Resolution"
 
-[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/VBoxContainer/DisplayInstructions/HBoxContainer2"]
-margin_left = 151.0
-margin_right = 475.0
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer2"]
+margin_left = 221.0
+margin_right = 522.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/DisplayInstructions/HBoxContainer2/CenterContainer"]
-margin_left = 130.0
-margin_right = 194.0
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer2/CenterContainer"]
+margin_left = 118.0
+margin_right = 182.0
 margin_bottom = 64.0
 texture = ExtResource( 2 )
 
-[node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer/VBoxContainer/DisplayInstructions/HBoxContainer2"]
-margin_left = 479.0
-margin_right = 804.0
+[node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer2"]
+margin_left = 526.0
+margin_right = 827.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/DisplayInstructions/HBoxContainer2/CenterContainer2"]
-margin_left = 130.0
-margin_right = 194.0
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer2/CenterContainer2"]
+margin_left = 118.0
+margin_right = 182.0
 margin_bottom = 64.0
 texture = ExtResource( 2 )
 
-[node name="CenterContainer3" type="CenterContainer" parent="HBoxContainer/VBoxContainer/DisplayInstructions/HBoxContainer2"]
-margin_left = 808.0
+[node name="CenterContainer3" type="CenterContainer" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer2"]
+margin_left = 831.0
 margin_right = 1133.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/DisplayInstructions/HBoxContainer2/CenterContainer3"]
-margin_left = 130.0
-margin_right = 194.0
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer2/CenterContainer3"]
+margin_left = 119.0
+margin_right = 183.0
 margin_bottom = 64.0
 texture = ExtResource( 2 )
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/DisplayInstructions"]
-margin_top = 301.0
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/DisplayOptions"]
+margin_top = 224.0
 margin_right = 1133.0
-margin_bottom = 365.0
+margin_bottom = 288.0
 
-[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/DisplayInstructions/HBoxContainer3"]
-margin_top = 20.0
-margin_right = 155.0
-margin_bottom = 43.0
-custom_fonts/font = SubResource( 3 )
-text = "Fullscreen:"
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer3"]
+margin_top = 15.0
+margin_right = 230.0
+margin_bottom = 49.0
+custom_fonts/font = SubResource( 6 )
+text = "Fullscreen"
 
-[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/VBoxContainer/DisplayInstructions/HBoxContainer3"]
-margin_left = 159.0
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer3"]
+margin_left = 234.0
 margin_right = 1133.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/DisplayInstructions/HBoxContainer3/CenterContainer"]
-margin_left = 455.0
-margin_right = 519.0
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer3/CenterContainer"]
+margin_left = 417.0
+margin_right = 481.0
 margin_bottom = 64.0
 texture = ExtResource( 2 )
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/DisplayInstructions"]
-margin_top = 395.0
+[node name="HBoxContainer6" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/DisplayOptions"]
+margin_top = 318.0
 margin_right = 1133.0
-margin_bottom = 459.0
+margin_bottom = 382.0
 
-[node name="Label3" type="Label" parent="HBoxContainer/VBoxContainer/DisplayInstructions/HBoxContainer4"]
-margin_top = 20.0
-margin_right = 95.0
-margin_bottom = 43.0
-custom_fonts/font = SubResource( 3 )
-text = "Volume:"
+[node name="Label5" type="Label" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer6"]
+margin_top = 15.0
+margin_right = 136.0
+margin_bottom = 49.0
+custom_fonts/font = SubResource( 6 )
+text = "VSync"
 
-[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/VBoxContainer/DisplayInstructions/HBoxContainer4"]
-margin_left = 99.0
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer6"]
+margin_left = 140.0
 margin_right = 1133.0
 margin_bottom = 64.0
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/DisplayInstructions/HBoxContainer4/CenterContainer"]
-margin_left = 485.0
-margin_right = 549.0
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer6/CenterContainer"]
+margin_left = 464.0
+margin_right = 528.0
+margin_bottom = 64.0
+texture = ExtResource( 2 )
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/DisplayOptions"]
+margin_top = 412.0
+margin_right = 1133.0
+margin_bottom = 476.0
+
+[node name="Label3" type="Label" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer4"]
+margin_top = 15.0
+margin_right = 143.0
+margin_bottom = 49.0
+custom_fonts/font = SubResource( 6 )
+text = "Volume"
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer4"]
+margin_left = 147.0
+margin_right = 1133.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer4/CenterContainer"]
+margin_left = 461.0
+margin_right = 525.0
+margin_bottom = 64.0
+texture = ExtResource( 2 )
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/DisplayOptions"]
+margin_top = 506.0
+margin_right = 1133.0
+margin_bottom = 570.0
+
+[node name="Label4" type="Label" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer5"]
+margin_top = 15.0
+margin_right = 226.0
+margin_bottom = 49.0
+custom_fonts/font = SubResource( 6 )
+text = "Skip Intro"
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer5"]
+margin_left = 230.0
+margin_right = 1133.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer5/CenterContainer"]
+margin_left = 419.0
+margin_right = 483.0
 margin_bottom = 64.0
 texture = ExtResource( 2 )
 
@@ -171,7 +219,7 @@ margin_top = 667.0
 margin_right = 223.0
 margin_bottom = 740.0
 focus_mode = 0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "Back"
 flat = true
 
