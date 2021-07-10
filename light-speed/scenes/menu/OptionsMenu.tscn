@@ -17,7 +17,7 @@ font_data = ExtResource( 1 )
 size = 32
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=4]
 size = 21
 font_data = ExtResource( 1 )
 
@@ -25,7 +25,7 @@ font_data = ExtResource( 1 )
 size = 21
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=6]
 size = 64
 font_data = ExtResource( 1 )
 
@@ -77,20 +77,22 @@ text = "Options:"
 margin_top = 196.0
 margin_right = 1133.0
 margin_bottom = 230.0
-custom_constants/separation = 80
+custom_constants/separation = 0
 
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer2"]
-margin_right = 217.0
+margin_right = 566.0
 margin_bottom = 34.0
+size_flags_horizontal = 3
 custom_fonts/font = SubResource( 3 )
 text = "Resolution"
 
-[node name="OptionButton" type="OptionButton" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer2"]
-margin_left = 297.0
-margin_right = 458.0
+[node name="ResolutionOB" type="OptionButton" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer2"]
+margin_left = 566.0
+margin_right = 727.0
 margin_bottom = 34.0
 focus_mode = 0
-custom_fonts/font = SubResource( 6 )
+size_flags_horizontal = 2
+custom_fonts/font = SubResource( 4 )
 text = "1600x900"
 flat = true
 items = [ "1280x720", null, false, 0, null, "1600x900", null, false, 1, null, "1920x1080", null, false, 2, null, "2560x1440", null, false, 3, null, "3840x2160", null, false, 4, null ]
@@ -100,20 +102,22 @@ selected = 1
 margin_top = 260.0
 margin_right = 1133.0
 margin_bottom = 300.0
-custom_constants/separation = 30
+custom_constants/separation = 0
 
 [node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer3"]
 margin_top = 3.0
-margin_right = 230.0
+margin_right = 566.0
 margin_bottom = 37.0
+size_flags_horizontal = 3
 custom_fonts/font = SubResource( 3 )
 text = "Fullscreen"
 
-[node name="CheckBox" type="CheckBox" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer3"]
-margin_left = 297.0
-margin_right = 458.0
+[node name="FullscreenCB" type="CheckBox" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer3"]
+margin_left = 566.0
+margin_right = 646.0
 margin_bottom = 40.0
 focus_mode = 0
+size_flags_horizontal = 2
 custom_icons/checked = ExtResource( 5 )
 custom_icons/unchecked = ExtResource( 4 )
 custom_fonts/font = SubResource( 5 )
@@ -123,43 +127,48 @@ text = "On"
 margin_top = 330.0
 margin_right = 1133.0
 margin_bottom = 370.0
-custom_constants/separation = 124
+custom_constants/separation = 0
 
 [node name="Label5" type="Label" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer6"]
 margin_top = 3.0
-margin_right = 136.0
+margin_right = 566.0
 margin_bottom = 37.0
+size_flags_horizontal = 3
 custom_fonts/font = SubResource( 3 )
 text = "VSync"
 
-[node name="CheckBox2" type="CheckBox" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer6"]
-margin_left = 297.0
-margin_right = 458.0
+[node name="VsyncCB" type="CheckBox" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer6"]
+margin_left = 566.0
+margin_right = 646.0
 margin_bottom = 40.0
 focus_mode = 0
+size_flags_horizontal = 2
 custom_icons/checked = ExtResource( 5 )
 custom_icons/unchecked = ExtResource( 4 )
 custom_fonts/font = SubResource( 5 )
+pressed = true
 text = "On"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/DisplayOptions"]
 margin_top = 400.0
 margin_right = 1133.0
 margin_bottom = 434.0
-custom_constants/separation = 200
+custom_constants/separation = 0
 
 [node name="Label3" type="Label" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer4"]
-margin_right = 143.0
+margin_right = 566.0
 margin_bottom = 34.0
+size_flags_horizontal = 3
 custom_fonts/font = SubResource( 3 )
 text = "Volume"
 
-[node name="OptionButton2" type="OptionButton" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer4"]
-margin_left = 297.0
-margin_right = 458.0
+[node name="VolumeOB" type="OptionButton" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer4"]
+margin_left = 566.0
+margin_right = 631.0
 margin_bottom = 34.0
 focus_mode = 0
-custom_fonts/font = SubResource( 6 )
+size_flags_horizontal = 2
+custom_fonts/font = SubResource( 4 )
 text = "50%"
 flat = true
 items = [ "0%", null, false, 0, null, "25%", null, false, 1, null, "50%", null, false, 2, null, "75%", null, false, 3, null, "100%", null, false, 4, null ]
@@ -169,20 +178,22 @@ selected = 2
 margin_top = 464.0
 margin_right = 1133.0
 margin_bottom = 504.0
-custom_constants/separation = 30
+custom_constants/separation = 0
 
 [node name="Label4" type="Label" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer5"]
 margin_top = 3.0
-margin_right = 226.0
+margin_right = 566.0
 margin_bottom = 37.0
+size_flags_horizontal = 3
 custom_fonts/font = SubResource( 3 )
 text = "Skip Intro"
 
-[node name="CheckBox2" type="CheckBox" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer5"]
-margin_left = 297.0
-margin_right = 458.0
+[node name="SkipCB" type="CheckBox" parent="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer5"]
+margin_left = 566.0
+margin_right = 646.0
 margin_bottom = 40.0
 focus_mode = 0
+size_flags_horizontal = 2
 custom_icons/checked = ExtResource( 5 )
 custom_icons/unchecked = ExtResource( 4 )
 custom_fonts/font = SubResource( 5 )
@@ -199,8 +210,13 @@ margin_top = 667.0
 margin_right = 223.0
 margin_bottom = 740.0
 focus_mode = 0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 text = "Back"
 flat = true
 
+[connection signal="item_selected" from="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer2/ResolutionOB" to="." method="_on_ResolutionOB_item_selected"]
+[connection signal="toggled" from="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer3/FullscreenCB" to="." method="_on_FullscreenCB_toggled"]
+[connection signal="toggled" from="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer6/VsyncCB" to="." method="_on_VsyncCB_toggled"]
+[connection signal="item_selected" from="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer4/VolumeOB" to="." method="_on_VolumeOB_item_selected"]
+[connection signal="toggled" from="HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer5/SkipCB" to="." method="_on_SkipCB_toggled"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer2/BackButton" to="." method="_on_BackButton_pressed"]
