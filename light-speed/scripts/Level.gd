@@ -53,3 +53,19 @@ func _on_Hexagon_scored(add_score):
 	#print("Scored: " + str(add_score))
 	score += add_score
 	$HUD.update_score(score, add_score)
+
+
+# TODO: fix this so the res update is finished before the 2nd print + background selections
+func _on_Menu_change_resolution(new_res):
+	print(new_res)
+	OS.set_window_size(new_res)
+	print(get_viewport().size)
+	$Background.change_resolution(new_res.y)
+
+
+func _on_Menu_change_volume(new_vol):
+	pass # Replace with function body.
+
+
+func _on_Menu_skip_intro(new_skip):
+	pass # Replace with function body.

@@ -44,4 +44,7 @@ visible = false
 [connection signal="start_game" from="StartMenu" to="." method="_on_StartMenu_start_game"]
 [connection signal="back" from="InstructionsMenu" to="." method="_on_InstructionsMenu_back"]
 [connection signal="back" from="OptionsMenu" to="." method="_on_OptionsMenu_back"]
+[connection signal="change_resolution" from="OptionsMenu" to="." method="_on_OptionsMenu_change_resolution"]
+[connection signal="change_volume" from="OptionsMenu" to="." method="_on_OptionsMenu_change_volume"]
+[connection signal="skip_intro" from="OptionsMenu" to="." method="_on_OptionsMenu_skip_intro"]
 [connection signal="back" from="CreditsMenu" to="." method="_on_CreditsMenu_back"]
