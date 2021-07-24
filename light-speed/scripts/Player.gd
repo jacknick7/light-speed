@@ -1,9 +1,11 @@
 extends Node
 
+
 var easy
 var velocity
 const max_velocity = 0.125
 var playing
+
 
 func _ready():
 	playing = false
@@ -119,4 +121,3 @@ func trigger_hexagon():
 	# maybe there's a better way to do this?
 	$PlayerShip/CollisionShape2D.set_deferred("disabled", true)
 	$PlayerShip/CollisionShape2D.set_deferred("disabled", false)
-

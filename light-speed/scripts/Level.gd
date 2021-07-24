@@ -3,10 +3,14 @@ extends Node
 
 var ini_position
 var score
+var volume
+var skip_intro
 
 
 func _ready():
 	randomize()
+	volume = 50
+	skip_intro = false
 	$Background.initialize()
 	ini_position = $HexagonMatrix.initialize()
 	$Menu.initialize()
@@ -14,8 +18,11 @@ func _ready():
 	#print(str(ini_position))
 
 
+# TODO: make the intro
 func start_game(easy):
 	#print(easy)
+	if !skip_intro:
+		print("Show intro here")
 	$HUD.start_game()
 	$HexagonMatrix.start_game(self)
 	$UpdateTimer.start()
@@ -64,8 +71,9 @@ func _on_Menu_change_resolution(new_res):
 
 
 func _on_Menu_change_volume(new_vol):
-	pass # Replace with function body.
+	volume = new_vol
+	print(str(volume))
 
 
 func _on_Menu_skip_intro(new_skip):
-	pass # Replace with function body.
+	skip_intro = new_skip

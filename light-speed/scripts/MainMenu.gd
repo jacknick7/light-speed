@@ -6,6 +6,7 @@ signal instructions()
 signal options()
 signal credits()
 
+
 func _ready():
 	initialize()
 
