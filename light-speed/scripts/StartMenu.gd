@@ -8,7 +8,7 @@ signal back()
 
 
 func _on_EasyButton_pressed():
-	note.text = ""
+	note.text = "\n"
 	emit_signal("start_game", true)
 
 
@@ -17,11 +17,11 @@ func _on_EasyButton_mouse_entered():
 
 
 func _on_EasyButton_mouse_exited():
-	note.text = ""
+	note.text = "\n"
 
 
 func _on_NormalButton_pressed():
-	note.text = ""
+	note.text = "\n"
 	emit_signal("start_game", false)
 
 
@@ -30,7 +30,7 @@ func _on_NormalButton_mouse_entered():
 
 
 func _on_NormalButton_mouse_exited():
-	note.text = ""
+	note.text = "\n"
 
 
 func _on_BackButton_pressed():

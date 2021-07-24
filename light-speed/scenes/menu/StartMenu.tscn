@@ -16,6 +16,7 @@ size = 64
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=4]
+size = 21
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=5]
@@ -60,16 +61,16 @@ custom_constants/separation = 30
 alignment = 1
 
 [node name="DificultyLabel" type="Label" parent="HBoxContainer/VBoxContainer/MenuOptions"]
-margin_top = 157.0
+margin_top = 142.0
 margin_right = 1133.0
-margin_bottom = 191.0
+margin_bottom = 176.0
 custom_fonts/font = SubResource( 2 )
 text = "Choose one difficulty..."
 
 [node name="EasyButton" type="Button" parent="HBoxContainer/VBoxContainer/MenuOptions"]
-margin_top = 221.0
+margin_top = 206.0
 margin_right = 223.0
-margin_bottom = 294.0
+margin_bottom = 279.0
 focus_mode = 0
 size_flags_horizontal = 0
 custom_fonts/font = SubResource( 3 )
@@ -77,9 +78,9 @@ text = "Easy"
 flat = true
 
 [node name="NormalButton" type="Button" parent="HBoxContainer/VBoxContainer/MenuOptions"]
-margin_top = 324.0
+margin_top = 309.0
 margin_right = 290.0
-margin_bottom = 397.0
+margin_bottom = 382.0
 focus_mode = 0
 size_flags_horizontal = 0
 custom_fonts/font = SubResource( 3 )
@@ -90,10 +91,12 @@ __meta__ = {
 }
 
 [node name="NoteLabel" type="Label" parent="HBoxContainer/VBoxContainer/MenuOptions"]
-margin_top = 427.0
+margin_top = 412.0
 margin_right = 1133.0
-margin_bottom = 445.0
+margin_bottom = 461.0
 custom_fonts/font = SubResource( 4 )
+text = "
+"
 autowrap = true
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]

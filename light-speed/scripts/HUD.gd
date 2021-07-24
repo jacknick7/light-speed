@@ -1,33 +1,23 @@
-extends CanvasLayer
+extends MarginContainer
 
 
-func _ready():
-	$ScoreLabel.hide()
-	$MessageLabel.hide()
+onready var score_label = $VBoxContainer/ScoreLabel
 
 
-func show_message(text):
-	$MessageLabel.text = text
-	$MessageLabel.show()
-	$MessageTimer.start()
+func initialize():
+	score_label.hide()
 
 
-func show_game_over():
-	show_message("Game Over")
-	yield($MessageTimer, "timeout")
-	$ScoreLabel.hide()
+func game_over():
+	score_label.hide()
 
 
 func update_score(score, show_score):
 	if show_score > 0:
-		$ScoreLabel.text = str(score) + "\n+" + str(show_score)
+		score_label.text = str(score) + "\n+" + str(show_score)
 	else:
-		$ScoreLabel.text = str(score)
+		score_label.text = str(score)
 
 
 func start_game():
-	$ScoreLabel.show()
-
-
-func _on_MessageTimer_timeout():
-	$MessageLabel.hide()
+	score_label.show()

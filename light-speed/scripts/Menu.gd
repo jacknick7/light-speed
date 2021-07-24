@@ -8,9 +8,17 @@ signal skip_intro(new_skip)
 
 
 func initialize():
-	$BlurColorRect.show()
 	$MainMenu.show()
 	$MainMenu.initialize()
+
+
+func game_over(score):
+	$OverMenu.update_score(score)	
+	$BlurColorRect.show()
+	$OverMenu.show()
+	yield(get_tree().create_timer(3), "timeout")
+	$OverMenu.hide()
+	initialize()
 
 
 func _on_MainMenu_start():
