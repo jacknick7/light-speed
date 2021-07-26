@@ -27,6 +27,8 @@ func _process(delta):
 func handle_input(delta):
 	if Input.is_action_just_pressed("ui_select"):
 		$PlayerShip.position += new_position()
+		#print(str($PlayerShip.position))
+		#print(str($PlayerShip.position.x/128) + ' ' + str($PlayerShip.position.y/96))
 		if easy:
 			update_position_easy()
 	elif Input.is_action_pressed("ui_right"):
@@ -67,11 +69,11 @@ func new_position():
 	if $PlayerShip.rotation >= (PI / 12) && $PlayerShip.rotation < (PI / 4):
 		new_pos = Vector2(128,-192)
 	elif $PlayerShip.rotation >= (PI / 4) && $PlayerShip.rotation < ((5 * PI) / 12):
-		new_pos = Vector2(192,-92)
+		new_pos = Vector2(192,-96)
 	elif $PlayerShip.rotation >= ((5 * PI) / 12) && $PlayerShip.rotation < ((7 * PI) / 12):
 		new_pos = Vector2(256,0)
 	elif $PlayerShip.rotation >= ((7 * PI) / 12) && $PlayerShip.rotation < ((3 * PI) / 4):
-		new_pos = Vector2(192,92)
+		new_pos = Vector2(192,96)
 	elif $PlayerShip.rotation >= ((3 * PI) / 4) && $PlayerShip.rotation < ((11 * PI) / 12):
 		new_pos = Vector2(128,192)
 	elif $PlayerShip.rotation >= ((11 * PI) / 12) && $PlayerShip.rotation < ((13 * PI) / 12):
@@ -79,15 +81,16 @@ func new_position():
 	elif $PlayerShip.rotation >= ((13 * PI) / 12) && $PlayerShip.rotation < ((5 * PI) / 4):
 		new_pos = Vector2(-128,192)
 	elif $PlayerShip.rotation >= ((5 * PI) / 4) && $PlayerShip.rotation < ((17 * PI) / 12):
-		new_pos = Vector2(-192,92)
+		new_pos = Vector2(-192,96)
 	elif $PlayerShip.rotation >= ((17 * PI) / 12) && $PlayerShip.rotation < ((19 * PI) / 12):
 		new_pos = Vector2(-256,0)
 	elif $PlayerShip.rotation >= ((19 * PI) / 12) && $PlayerShip.rotation < ((7 * PI) / 4):
-		new_pos = Vector2(-192,-92)
+		new_pos = Vector2(-192,-96)
 	elif $PlayerShip.rotation >= ((7 * PI) / 4) && $PlayerShip.rotation < ((23 * PI) / 12):
 		new_pos = Vector2(-128,-192)
 	else: # $PlayerShip.rotation in [(23 * PI) / 12, PI / 12)
 		new_pos = Vector2(0,-192)
+	#print("new_pos: " + str(new_pos))
 	return new_pos
 
 
@@ -96,6 +99,8 @@ func start_game(dif, pos):
 	playing = true
 	velocity = 0
 	$PlayerShip.position = pos
+	#print(str($PlayerShip.position))
+	#print(str($PlayerShip.position.x/128) + ' ' + str($PlayerShip.position.y/96))
 	$PlayerShip.rotation = 0
 	$PlayerShip.show()
 	if easy:
