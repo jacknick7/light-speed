@@ -43,7 +43,7 @@ func game_over():
 
 func _on_UpdateTimer_timeout():
 	$HexagonMatrix.update_matrix()
-	$Player.trigger_hexagon()
+	#$Player.trigger_hexagon()
 
 
 func _on_ScoreTimer_timeout():
@@ -58,7 +58,7 @@ func _on_Hexagon_damaged():
 
 
 func _on_Hexagon_scored(add_score):
-	#print("Scored: " + str(add_score))
+	print("Scored: " + str(add_score))
 	score += add_score
 	$HUD.update_score(score, add_score)
 

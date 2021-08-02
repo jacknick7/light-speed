@@ -23,15 +23,15 @@ animations = [ {
 "name": "turn_right",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "turn_left",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 10 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "destroyed",
 "speed": 4.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "turn_left",
+"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -55,7 +55,7 @@ script = ExtResource( 7 )
 scale = Vector2( 0.1, 0.1 )
 frames = SubResource( 1 )
 animation = "destroyed"
-frame = 1
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerShip"]
@@ -66,5 +66,4 @@ disabled = true
 scale = Vector2( 0.1, 0.1 )
 frames = SubResource( 3 )
 animation = "idle"
-frame = 1
 playing = true

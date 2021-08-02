@@ -7,8 +7,9 @@ var hexagons_n
 var hexagons_m
 
 enum {DAMAGE, SCORE_0, SCORE_1, SCORE_2, EMPTY}
-var hexagon_prob = [DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,SCORE_0,
-SCORE_1,SCORE_2,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE]
+var hexagon_prob = [SCORE_0,SCORE_1,SCORE_2]
+#var hexagon_prob = [DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,
+#DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,SCORE_0,SCORE_1,SCORE_2]
 
 
 # TODO: find out why get_viewport().size returns inacurate data when resolution is > 1080p
@@ -68,3 +69,8 @@ func update_matrix():
 			hexagon.set_type(make_choice())
 		else:
 			hexagon.set_type(EMPTY)
+	var player = get_parent().get_node("Player/PlayerShip")
+	for hexagon in hexagon_matrix:
+		if hexagon.overlaps_body(player):
+			hexagon._on_Hexagon_body_entered(player)
+			#print("Overlaps with hexagon in: " + str(hexagon.position))
