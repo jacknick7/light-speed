@@ -60,7 +60,7 @@ func get_type():
 
 
 func _on_Hexagon_body_entered(_body):
-	#print("collide")
+	print("player collide with hexagon of type " + str(type))
 	if type == DAMAGE:
 		emit_signal("damaged")
 	elif type != EMPTY:
