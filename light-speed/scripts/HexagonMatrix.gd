@@ -5,27 +5,11 @@ export (PackedScene) var Hexagon
 var hexagon_matrix = []
 var hexagons_n
 var hexagons_m
-var updated
-var updated2
 
 enum {DAMAGE, SCORE_0, SCORE_1, SCORE_2, EMPTY}
 #var hexagon_prob = [SCORE_0,SCORE_1,SCORE_2]
 var hexagon_prob = [DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,
 DAMAGE,DAMAGE,DAMAGE,DAMAGE,DAMAGE,SCORE_0,SCORE_1,SCORE_2]
-
-
-func _process(delta):	
-	if updated2:
-		var player = get_parent().get_node("Player/PlayerShip")
-		for hexagon in hexagon_matrix:
-			if hexagon.overlaps_body(player):
-				hexagon._on_Hexagon_body_entered(player)
-				print("Overlaps with hexagon in: " + str(hexagon.position) + ' ' + str(player.position))
-				print("Hexagon of type " + str(hexagon.get_type()))
-		updated2 = false
-	if updated:
-		updated2 = true
-		updated = false
 
 
 # TODO: find out why get_viewport().size returns inacurate data when resolution is > 1080p
@@ -65,8 +49,6 @@ func start_game(target_node):
 	for hexagon in hexagon_matrix:
 			hexagon.connect("damaged", target_node, "_on_Hexagon_damaged")
 			hexagon.connect("scored", target_node, "_on_Hexagon_scored")
-	updated = false
-	updated2 = false
 
 
 func game_over(target_node):
@@ -87,5 +69,11 @@ func update_matrix():
 			hexagon.set_type(make_choice())
 		else:
 			hexagon.set_type(EMPTY)
-	updated = true
+	var player = get_parent().get_node("Player/PlayerShip")
+	for hexagon in hexagon_matrix:
+		if hexagon.overlaps_body(player):
+			print("\nHexagon of type " + str(hexagon.get_type()))
+			hexagon._on_Hexagon_body_entered(player)
+			print("Overlaps with hexagon in: " + str(hexagon.position) + ' ' + str(player.position))
+			print("Hexagon of type " + str(hexagon.get_type()) + '\n')
 
