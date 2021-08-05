@@ -39,7 +39,8 @@ func config_init():
 				print("Error " + err + " loading ConfigFile")
 	err = config.load("user://settings.cfg")
 	if err == OK:
-		OS.set_window_size(Vector2(config.get_value("graphics", "display_height")*16/9,config.get_value("graphics", "display_height")))
+		var size_y = config.get_value("graphics", "display_height")
+		OS.set_window_size(Vector2(size_y * 16 / 9, size_y))
 		OS.window_fullscreen = config.get_value("graphics", "fullscreen")
 		OS.vsync_enabled = config.get_value("graphics", "vsync")
 		volume = config.get_value("audio", "volume")

@@ -8,6 +8,7 @@ signal skip_intro(new_skip)
 
 
 func initialize():
+	$OptionsMenu.initialize()
 	$MainMenu.show()
 	$MainMenu.initialize()
 
