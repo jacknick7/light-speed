@@ -9,13 +9,43 @@ var skip_intro
 
 func _ready():
 	randomize()
-	volume = 50
-	skip_intro = false
+	config_init()
 	$Background.initialize()
 	ini_position = $HexagonMatrix.initialize()
 	$Menu.initialize()
 	$HUD.initialize()
 	#print(str(ini_position))
+
+
+func config_init():
+	var file = File.new()
+	var err
+	var config = ConfigFile.new()
+	if !file.file_exists("user://settings.cfg"):
+		err = file.open("user://settings.cfg", File.WRITE)
+		if err != OK:
+			print("Error " + err + " creating settings file")
+		else:
+			file.close()
+			err = config.load("user://settings.cfg")
+			if err == OK:
+				config.set_value("graphics", "display_height", 900)
+				config.set_value("graphics", "fullscreen", false)
+				config.set_value("graphics", "vsync", true)
+				config.set_value("audio", "volume", 50)
+				config.set_value("game", "skip_intro", false)
+				config.save("user://settings.cfg")
+			else:
+				print("Error " + err + " loading ConfigFile")
+	err = config.load("user://settings.cfg")
+	if err == OK:
+		OS.set_window_size(Vector2(config.get_value("graphics", "display_height")*16/9,config.get_value("graphics", "display_height")))
+		OS.window_fullscreen = config.get_value("graphics", "fullscreen")
+		OS.vsync_enabled = config.get_value("graphics", "vsync")
+		volume = config.get_value("audio", "volume")
+		skip_intro = config.get_value("game", "skip_intro")
+	else:
+		print("Error " + err + " loading ConfigFile")
 
 
 # TODO: make the intro
