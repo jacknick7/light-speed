@@ -14,10 +14,10 @@ func initialize():
 	var config = ConfigFile.new()
 	var err = config.load("user://settings.cfg")
 	if err == OK:
-		#$HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer2/ResolutionOB.select()
+		$HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer2/ResolutionOB.selected = config.get_value("graphics", "resolution_id")
 		$HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer3/FullscreenCB.pressed = config.get_value("graphics", "fullscreen")
 		$HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer6/VsyncCB.pressed = config.get_value("graphics", "vsync")
-		#$HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer4/VolumeOB.pressed = config.get_value("graphics", "fullscreen")
+		$HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer4/VolumeOB.selected = config.get_value("audio", "volume_id")
 		$HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer5/SkipCB.pressed = config.get_value("game", "skip_intro")
 	else:
 		print("Error " + err + " loading ConfigFile")
@@ -31,7 +31,9 @@ func _on_ResolutionOB_item_selected(index):
 	var config = ConfigFile.new()
 	var err = config.load("user://settings.cfg")
 	if err == OK:
-		config.set_value("graphics", "display_height", res[index].y)
+		config.set_value("graphics", "resolution_width", int(res[index].x))
+		config.set_value("graphics", "resolution_height", int(res[index].y))
+		config.set_value("graphics", "resolution_id", index)
 		config.save("user://settings.cfg")
 	else:
 		print("Error " + err + " loading ConfigFile")
@@ -65,6 +67,7 @@ func _on_VolumeOB_item_selected(index):
 	var err = config.load("user://settings.cfg")
 	if err == OK:
 		config.set_value("audio", "volume", vol[index])
+		config.set_value("audio", "volume_id", index)
 		config.save("user://settings.cfg")
 	else:
 		print("Error " + err + " loading ConfigFile")
