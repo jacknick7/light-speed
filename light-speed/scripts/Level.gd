@@ -10,6 +10,7 @@ var skip_intro
 func _ready():
 	randomize()
 	config_init()
+	leaderb_init()
 	$Background.initialize()
 	ini_position = $HexagonMatrix.initialize()
 	$Menu.initialize()
@@ -51,6 +52,21 @@ func config_init():
 		skip_intro = config.get_value("game", "skip_intro")
 	else:
 		print("Error " + err + " loading ConfigFile")
+
+
+func leaderb_init():
+	var file = File.new()
+	if !file.file_exists("user://leaderboard.save"):
+		var err = file.open("user://leaderboard.save", File.WRITE)
+		if err == OK:
+			var leaderboard = {
+				"names" : [null, null, null, null, null],
+				"scores" : [null, null, null, null, null]
+			}
+			file.store_line(to_json(leaderboard))
+			file.close()
+		else:
+			print("Error " + err + " opening leaderboard")
 
 
 # TODO: make the intro
