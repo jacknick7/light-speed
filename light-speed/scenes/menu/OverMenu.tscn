@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://fonts/quantum/quantflt.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scripts/OverMenu.gd" type="Script" id=2]
 
 [sub_resource type="DynamicFont" id=1]
-size = 64
+size = 128
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
@@ -12,6 +12,22 @@ size = 32
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
+size = 64
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 64
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=7]
 size = 32
 font_data = ExtResource( 1 )
 
@@ -36,199 +52,243 @@ alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
 margin_right = 1360.0
-margin_bottom = 368.0
-size_flags_vertical = 3
+margin_bottom = 192.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterContainer"]
-margin_left = 450.0
-margin_top = 121.0
-margin_right = 909.0
-margin_bottom = 247.0
+margin_left = 231.0
+margin_right = 1128.0
+margin_bottom = 192.0
 custom_constants/separation = 25
 
 [node name="GameOverLabel" type="Label" parent="VBoxContainer/CenterContainer/VBoxContainer"]
-margin_right = 459.0
-margin_bottom = 67.0
+margin_right = 897.0
+margin_bottom = 133.0
 custom_fonts/font = SubResource( 1 )
 text = "Game Over"
 align = 1
 
 [node name="ScoreLabel" type="Label" parent="VBoxContainer/CenterContainer/VBoxContainer"]
-margin_top = 92.0
-margin_right = 459.0
-margin_bottom = 126.0
+margin_top = 158.0
+margin_right = 897.0
+margin_bottom = 192.0
 custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 1
 autowrap = true
 
 [node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer"]
-margin_top = 372.0
+margin_top = 196.0
 margin_right = 1360.0
 margin_bottom = 740.0
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/CenterContainer2"]
-margin_left = 407.0
-margin_top = 32.0
-margin_right = 953.0
-margin_bottom = 336.0
-custom_constants/separation = 70
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterContainer2"]
+visible = false
+margin_left = 327.0
+margin_top = 76.0
+margin_right = 1033.0
+margin_bottom = 467.0
+custom_constants/separation = 20
+alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterContainer2/HBoxContainer"]
+[node name="LeadrbLabel" type="Label" parent="VBoxContainer/CenterContainer2/VBoxContainer"]
+margin_right = 706.0
+margin_bottom = 67.0
+custom_fonts/font = SubResource( 3 )
+text = "Leaderboard"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/CenterContainer2/VBoxContainer"]
+margin_top = 87.0
+margin_right = 706.0
+margin_bottom = 391.0
+custom_constants/separation = 150
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer"]
 margin_right = 163.0
 margin_bottom = 304.0
 custom_constants/separation = 20
 
-[node name="PositionLabel" type="Label" parent="VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer"]
+[node name="PositionLabel" type="Label" parent="VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 margin_right = 163.0
 margin_bottom = 34.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Position"
 align = 1
 
-[node name="PositionLabel1" type="Label" parent="VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer"]
+[node name="PositionLabel1" type="Label" parent="VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 margin_top = 54.0
 margin_right = 163.0
 margin_bottom = 88.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "1"
 align = 1
 
-[node name="PositionLabel2" type="Label" parent="VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer"]
+[node name="PositionLabel2" type="Label" parent="VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 margin_top = 108.0
 margin_right = 163.0
 margin_bottom = 142.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "2"
 align = 1
 
-[node name="PositionLabel3" type="Label" parent="VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer"]
+[node name="PositionLabel3" type="Label" parent="VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 margin_top = 162.0
 margin_right = 163.0
 margin_bottom = 196.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "3"
 align = 1
 
-[node name="PositionLabel4" type="Label" parent="VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer"]
+[node name="PositionLabel4" type="Label" parent="VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 margin_top = 216.0
 margin_right = 163.0
 margin_bottom = 250.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "4"
 align = 1
 
-[node name="PositionLabel5" type="Label" parent="VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer"]
+[node name="PositionLabel5" type="Label" parent="VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 margin_top = 270.0
 margin_right = 163.0
 margin_bottom = 304.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "5"
 align = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/CenterContainer2/HBoxContainer"]
-margin_left = 233.0
-margin_right = 341.0
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer"]
+margin_left = 313.0
+margin_right = 421.0
 margin_bottom = 304.0
 custom_constants/separation = 20
 
-[node name="NameLabel" type="Label" parent="VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer2"]
+[node name="NameLabel" type="Label" parent="VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
 margin_right = 108.0
 margin_bottom = 34.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Name"
 align = 1
 
-[node name="NameLabel1" type="Label" parent="VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer2"]
+[node name="NameLabel1" type="Label" parent="VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
 margin_top = 54.0
 margin_right = 108.0
 margin_bottom = 88.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "..."
 align = 1
 
-[node name="NameLabel2" type="Label" parent="VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer2"]
+[node name="NameLabel2" type="Label" parent="VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
 margin_top = 108.0
 margin_right = 108.0
 margin_bottom = 142.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "..."
 align = 1
 
-[node name="NameLabel3" type="Label" parent="VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer2"]
+[node name="NameLabel3" type="Label" parent="VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
 margin_top = 162.0
 margin_right = 108.0
 margin_bottom = 196.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "..."
 align = 1
 
-[node name="NameLabel4" type="Label" parent="VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer2"]
+[node name="NameLabel4" type="Label" parent="VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
 margin_top = 216.0
 margin_right = 108.0
 margin_bottom = 250.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "..."
 align = 1
 
-[node name="NameLabel5" type="Label" parent="VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer2"]
+[node name="NameLabel5" type="Label" parent="VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer2"]
 margin_top = 270.0
 margin_right = 108.0
 margin_bottom = 304.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "..."
 align = 1
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/CenterContainer2/HBoxContainer"]
-margin_left = 411.0
-margin_right = 546.0
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer"]
+margin_left = 571.0
+margin_right = 706.0
 margin_bottom = 304.0
 custom_constants/separation = 20
 
-[node name="ScoreLabel" type="Label" parent="VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer3"]
+[node name="ScoreLabel" type="Label" parent="VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer3"]
 margin_right = 135.0
 margin_bottom = 34.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Score"
 align = 1
 
-[node name="ScoreLabel1" type="Label" parent="VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer3"]
+[node name="ScoreLabel1" type="Label" parent="VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer3"]
 margin_top = 54.0
 margin_right = 135.0
 margin_bottom = 88.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "..."
 align = 1
 
-[node name="ScoreLabel2" type="Label" parent="VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer3"]
+[node name="ScoreLabel2" type="Label" parent="VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer3"]
 margin_top = 108.0
 margin_right = 135.0
 margin_bottom = 142.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "..."
 align = 1
 
-[node name="ScoreLabel3" type="Label" parent="VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer3"]
+[node name="ScoreLabel3" type="Label" parent="VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer3"]
 margin_top = 162.0
 margin_right = 135.0
 margin_bottom = 196.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "..."
 align = 1
 
-[node name="ScoreLabel4" type="Label" parent="VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer3"]
+[node name="ScoreLabel4" type="Label" parent="VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer3"]
 margin_top = 216.0
 margin_right = 135.0
 margin_bottom = 250.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "..."
 align = 1
 
-[node name="ScoreLabel5" type="Label" parent="VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer3"]
+[node name="ScoreLabel5" type="Label" parent="VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer3"]
 margin_top = 270.0
 margin_right = 135.0
 margin_bottom = 304.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "..."
 align = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/CenterContainer2"]
+margin_left = 426.0
+margin_top = 156.0
+margin_right = 934.0
+margin_bottom = 387.0
+custom_constants/separation = 40
+
+[node name="NrecordLabel" type="Label" parent="VBoxContainer/CenterContainer2/VBoxContainer2"]
+margin_right = 508.0
+margin_bottom = 67.0
+custom_fonts/font = SubResource( 5 )
+text = "New Record"
+align = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/CenterContainer2/VBoxContainer2"]
+margin_top = 107.0
+margin_right = 508.0
+margin_bottom = 151.0
+custom_fonts/font = SubResource( 6 )
+align = 1
+
+[node name="EnterButton" type="Button" parent="VBoxContainer/CenterContainer2/VBoxContainer2"]
+margin_top = 191.0
+margin_right = 508.0
+margin_bottom = 231.0
+focus_mode = 0
+custom_fonts/font = SubResource( 7 )
+text = "Enter"
+flat = true

@@ -14,7 +14,8 @@ func initialize():
 
 
 func game_over(score):
-	$OverMenu.update_score(score)	
+	$OverMenu.update_score(score)
+	$OverMenu.update_leaderb(score)
 	$BlurColorRect.show()
 	$OverMenu.show()
 	yield(get_tree().create_timer(3), "timeout")

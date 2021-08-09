@@ -2,22 +2,26 @@ extends MarginContainer
 
 
 onready var name_labels = [
-	$VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer2/NameLabel1,
-	$VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer2/NameLabel2,
-	$VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer2/NameLabel3,
-	$VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer2/NameLabel4,
-	$VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer2/NameLabel5,
+	$VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer2/NameLabel1,
+	$VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer2/NameLabel2,
+	$VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer2/NameLabel3,
+	$VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer2/NameLabel4,
+	$VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer2/NameLabel5,
 ]
 onready var score_labels = [
-	$VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer3/ScoreLabel1,
-	$VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer3/ScoreLabel2,
-	$VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer3/ScoreLabel3,
-	$VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer3/ScoreLabel4,
-	$VBoxContainer/CenterContainer2/HBoxContainer/VBoxContainer3/ScoreLabel5,
+	$VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer3/ScoreLabel1,
+	$VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer3/ScoreLabel2,
+	$VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer3/ScoreLabel3,
+	$VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer3/ScoreLabel4,
+	$VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer3/ScoreLabel5,
 ]
+
 
 func update_score(score):
 	$VBoxContainer/CenterContainer/VBoxContainer/ScoreLabel.text = str(score) + " points"
+
+
+func update_leaderb(score):
 	var names
 	var scores
 	var file = File.new()
