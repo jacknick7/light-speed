@@ -52,3 +52,4 @@ visible = false
 [connection signal="change_volume" from="OptionsMenu" to="." method="_on_OptionsMenu_change_volume"]
 [connection signal="skip_intro" from="OptionsMenu" to="." method="_on_OptionsMenu_skip_intro"]
 [connection signal="back" from="CreditsMenu" to="." method="_on_CreditsMenu_back"]
+[connection signal="displaying_leaderb" from="OverMenu" to="." method="displaying_leaderb"]

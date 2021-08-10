@@ -14,13 +14,11 @@ func initialize():
 
 
 func game_over(score):
-	$OverMenu.update_score(score)
-	$OverMenu.update_leaderb(score)
 	$BlurColorRect.show()
+	var record = $OverMenu.game_over(score)
 	$OverMenu.show()
-	yield(get_tree().create_timer(3), "timeout")
-	$OverMenu.hide()
-	initialize()
+	if !record:
+		displaying_leaderb()
 
 
 func _on_MainMenu_start():
@@ -79,3 +77,9 @@ func _on_OptionsMenu_change_volume(new_vol):
 
 func _on_OptionsMenu_skip_intro(new_skip):
 	emit_signal("skip_intro", new_skip)
+
+
+func displaying_leaderb():
+	yield(get_tree().create_timer(3), "timeout")
+	$OverMenu.hide()
+	initialize()
