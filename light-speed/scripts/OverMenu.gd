@@ -23,7 +23,6 @@ signal displaying_leaderb
 
 func game_over(score):
 	display_score(score)
-	var record = load_check_leaderb(score)
 	if record:
 		$VBoxContainer/CenterContainer2/VBoxContainer2/LineEdit.text = ""
 		$VBoxContainer/CenterContainer2/VBoxContainer.hide()
@@ -37,46 +36,6 @@ func game_over(score):
 
 func display_score(score):
 	$VBoxContainer/CenterContainer/VBoxContainer/ScoreLabel.text = str(score) + " points"
-
-
-func load_check_leaderb(score):
-	var file = File.new()
-	var err = file.open("user://leaderboard.save", File.READ)
-	if err == OK:
-		var leaderboard = parse_json(file.get_line())
-		file.close()
-		names = leaderboard["names"]
-		scores = leaderboard["scores"]
-		if scores[scores.size() - 1] == null || scores[scores.size() - 1] < score:
-			new_score = score
-			return true
-	else:
-		print("Error " + err + " opening leaderboard for reading")
-	return false
-
-
-func update_leaderb(new_name):
-	var i = 0
-	var found = 0
-	while i < scores.size() && found == 0:
-		if scores[i] == null:
-			found = 1
-		elif scores[i] < new_score:
-			found = 2
-		else:
-			i += 1
-	if found != 0:
-		if found == 2:
-			var j = scores.size() - 1
-			while j > i:
-				names[j] = names[j-1]
-				scores[j] = scores[j-1]
-				j -= 1
-		scores[i] = new_score
-		names[i] = new_name
-	store_leaderb()
-	display_leaderb()
-
 
 
 func store_leaderb():
