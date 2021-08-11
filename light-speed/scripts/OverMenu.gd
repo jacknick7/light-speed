@@ -15,41 +15,30 @@ onready var score_labels = [
 	$VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer3/ScoreLabel4,
 	$VBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer/VBoxContainer3/ScoreLabel5,
 ]
-var names
-var scores
 var new_score
 signal displaying_leaderb
 
 
-func game_over(score):
+func game_over(score, lb):
 	display_score(score)
-	if record:
+	if lb == null:
 		$VBoxContainer/CenterContainer2/VBoxContainer2/LineEdit.text = ""
 		$VBoxContainer/CenterContainer2/VBoxContainer.hide()
 		$VBoxContainer/CenterContainer2/VBoxContainer2.show()
 	else:
-		display_leaderb()
+		display_leaderb(lb)
 		$VBoxContainer/CenterContainer2/VBoxContainer.show()
 		$VBoxContainer/CenterContainer2/VBoxContainer2.hide()
-	return record
 
 
 func display_score(score):
 	$VBoxContainer/CenterContainer/VBoxContainer/ScoreLabel.text = str(score) + " points"
 
 
-func store_leaderb():
-	var file = File.new()
-	var err = file.open("user://leaderboard.save", File.WRITE)
-	if err == OK:
-		file.store_line(to_json({"names":names, "scores":scores}))
-	else:
-		print("Error " + err + " opening leaderboard for writing")
-	file.close()
-
-
-func display_leaderb():
+func display_leaderb(lb):
 	var ind = 0
+	var names = lb["names"]
+	var scores = lb["scores"]
 	while ind < scores.size():
 		if scores[ind] == null:
 			name_labels[ind].text = "..."
@@ -72,7 +61,7 @@ func _on_EnterButton_pressed():
 		$VBoxContainer/CenterContainer2/VBoxContainer2/LineEdit.text = ""
 	else:
 		var new_name = $VBoxContainer/CenterContainer2/VBoxContainer2/LineEdit.text
-		update_leaderb(new_name)
+		#update_leaderb(new_name)
 		$VBoxContainer/CenterContainer2/VBoxContainer.show()
 		$VBoxContainer/CenterContainer2/VBoxContainer2.hide()
 		emit_signal("displaying_leaderb")

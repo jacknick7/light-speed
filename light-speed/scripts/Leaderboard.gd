@@ -23,8 +23,7 @@ func create_lb():
 		}
 		file.store_line(to_json(leaderboard))
 		file.close()
-	else:
-		print("Error " + err + " creating leaderboard file")
+	else: print("Error " + err + " creating leaderboard file")
 
 
 func load_lb():
@@ -36,8 +35,7 @@ func load_lb():
 	if err == OK:
 		leaderboard = parse_json(file.get_line())
 		file.close()
-	else:
-		print("Error " + err + " reading leaderboard file")
+	else: print("Error " + err + " reading leaderboard file")
 
 
 func is_record(new_score):
@@ -56,6 +54,10 @@ func is_record(new_score):
 
 
 func update_lb(new_score, new_name):
+	"""
+	Updates leaderboard by adding a new entry with new_score and new_name.
+	It also reareng some positions if necessary.
+	"""
 	var i = 0
 	var found = false
 	var scores = leaderboard["scores"]
@@ -73,3 +75,30 @@ func update_lb(new_score, new_name):
 	scores[i] = new_score
 	names[i] = new_name
 	leaderboard = {"names": names, "scores": scores}
+
+
+func store_lb():
+	"""
+	Saves the leaderboard to a file.
+	"""
+	var file = File.new()
+	var err = file.open("user://leaderboard.save", File.WRITE)
+	if err == OK: file.store_line(to_json(leaderboard))
+	else: print("Error " + err + " writing leaderboard file")
+	file.close()
+
+
+func update_store_lb(new_score,new_name):
+	"""
+	Updates and stores the leaderboard.
+	"""
+	update_lb(new_score, new_name)
+	store_lb()
+
+
+func get_lb():
+	"""
+	Get the leaderboard.
+	"""
+	return leaderboard
+

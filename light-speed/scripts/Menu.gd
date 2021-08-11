@@ -13,11 +13,11 @@ func initialize():
 	$MainMenu.initialize()
 
 
-func game_over(score):
+func game_over(score, lb = null):
 	$BlurColorRect.show()
-	var record = $OverMenu.game_over(score)
+	$OverMenu.game_over(score, lb)
 	$OverMenu.show()
-	if !record:
+	if lb != null:
 		displaying_leaderb()
 
 

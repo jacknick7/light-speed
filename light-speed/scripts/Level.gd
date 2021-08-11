@@ -73,7 +73,8 @@ func game_over():
 	$ScoreTimer.stop()
 	$HUD.game_over()
 	$HexagonMatrix.game_over(self)
-	$Menu.game_over(score)
+	if $Leaderboard.is_record(score): $Menu.game_over(score)
+	else: $Menu.game_over(score, $Leaderboard.get_lb())
 
 
 func _on_UpdateTimer_timeout():
