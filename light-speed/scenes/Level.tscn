@@ -32,5 +32,6 @@ wait_time = 5.0
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="change_resolution" from="Menu" to="." method="_on_Menu_change_resolution"]
 [connection signal="change_volume" from="Menu" to="." method="_on_Menu_change_volume"]
+[connection signal="name_record" from="Menu" to="." method="_on_Menu_name_record"]
 [connection signal="skip_intro" from="Menu" to="." method="_on_Menu_skip_intro"]
 [connection signal="start_game" from="Menu" to="." method="start_game"]

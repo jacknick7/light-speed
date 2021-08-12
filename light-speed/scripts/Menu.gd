@@ -5,7 +5,7 @@ signal start_game(easy)
 signal change_resolution(new_res)
 signal change_volume(new_vol)
 signal skip_intro(new_skip)
-
+signal name_record(new_name)
 
 func initialize():
 	$OptionsMenu.initialize()
@@ -13,12 +13,21 @@ func initialize():
 	$MainMenu.initialize()
 
 
-func game_over(score, lb = null):
+func game_over_init(score):
 	$BlurColorRect.show()
-	$OverMenu.game_over(score, lb)
+	$OverMenu.display_score(score)
 	$OverMenu.show()
-	if lb != null:
-		displaying_leaderb()
+
+
+func game_over_lb(lb):
+	$OverMenu.display_lb(lb)
+	yield(get_tree().create_timer(3), "timeout")
+	$OverMenu.hide()
+	initialize()
+
+
+func game_over_record():
+	$OverMenu.display_record()
 
 
 func _on_MainMenu_start():
@@ -79,7 +88,6 @@ func _on_OptionsMenu_skip_intro(new_skip):
 	emit_signal("skip_intro", new_skip)
 
 
-func displaying_leaderb():
-	yield(get_tree().create_timer(3), "timeout")
-	$OverMenu.hide()
-	initialize()
+func _on_OverMenu_name_record(new_name):
+	emit_signal("name_record", new_name)
+

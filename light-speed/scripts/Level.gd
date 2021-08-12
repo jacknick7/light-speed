@@ -73,8 +73,9 @@ func game_over():
 	$ScoreTimer.stop()
 	$HUD.game_over()
 	$HexagonMatrix.game_over(self)
-	if $Leaderboard.is_record(score): $Menu.game_over(score)
-	else: $Menu.game_over(score, $Leaderboard.get_lb())
+	if $Leaderboard.is_record(score): $Menu.game_over_record()
+	else: $Menu.game_over_lb($Leaderboard.get_lb())
+	$Menu.game_over_init(score)
 
 
 func _on_UpdateTimer_timeout():
@@ -113,3 +114,8 @@ func _on_Menu_change_volume(new_vol):
 
 func _on_Menu_skip_intro(new_skip):
 	skip_intro = new_skip
+
+
+func _on_Menu_name_record(new_name):
+	$Leaderboard.update_store_lb(score, new_name)
+	$Menu.game_over_lb($Leaderboard.get_lb())
