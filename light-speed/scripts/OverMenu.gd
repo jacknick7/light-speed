@@ -17,6 +17,7 @@ onready var score_labels = [
 ]
 onready var nameLE = $VBoxContainer/CenterContainer2/VBoxContainer2/LineEdit
 onready var scoreLabel = $VBoxContainer/CenterContainer/VBoxContainer/ScoreLabel
+onready var diffLabel = $VBoxContainer/CenterContainer2/VBoxContainer/DiffLabel
 signal name_record(new_name)
 
 
@@ -27,7 +28,11 @@ func display_record():
 
 
 func display_score(score):
-	scoreLabel.text = str(score) + " points"
+	scoreLabel.text = str(score) + " points" 
+
+
+func display_difficulty(diff):
+	diffLabel.text = diff + " difficulty"
 
 
 func display_lb(lb):

@@ -13,9 +13,10 @@ func initialize():
 	$MainMenu.initialize()
 
 
-func game_over_init(score):
+func game_over_init(score, diff):
 	$BlurColorRect.show()
 	$OverMenu.display_score(score)
+	$OverMenu.display_difficulty(diff)
 	$OverMenu.show()
 
 

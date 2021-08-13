@@ -5,6 +5,7 @@ var ini_position
 var score
 var volume
 var skip_intro
+var easy
 
 
 func _ready():
@@ -54,8 +55,9 @@ func config_init():
 
 
 # TODO: make the intro
-func start_game(easy):
+func start_game(is_easy):
 	#print(easy)
+	easy = is_easy
 	if !skip_intro:
 		print("Show intro here")
 	$HUD.start_game()
@@ -64,7 +66,7 @@ func start_game(easy):
 	$ScoreTimer.start()
 	score = 0
 	$HUD.update_score(score, 0)
-	$Player.start_game(easy, ini_position)
+	$Player.start_game(is_easy, ini_position)
 
 
 func game_over():
@@ -73,9 +75,11 @@ func game_over():
 	$ScoreTimer.stop()
 	$HUD.game_over()
 	$HexagonMatrix.game_over(self)
-	if $Leaderboard.is_record(score): $Menu.game_over_record()
-	else: $Menu.game_over_lb($Leaderboard.get_lb())
-	$Menu.game_over_init(score)
+	var diff = "Normal"
+	if easy: diff = "Easy"
+	if $Leaderboard.is_record(score, diff): $Menu.game_over_record()
+	else: $Menu.game_over_lb($Leaderboard.get_lb(diff))
+	$Menu.game_over_init(score, diff)
 
 
 func _on_UpdateTimer_timeout():
@@ -117,5 +121,7 @@ func _on_Menu_skip_intro(new_skip):
 
 
 func _on_Menu_name_record(new_name):
-	$Leaderboard.update_store_lb(score, new_name)
-	$Menu.game_over_lb($Leaderboard.get_lb())
+	var diff = "Normal"
+	if easy: diff = "Easy"
+	$Leaderboard.update_store_lb(score, new_name, diff)
+	$Menu.game_over_lb($Leaderboard.get_lb(diff))
