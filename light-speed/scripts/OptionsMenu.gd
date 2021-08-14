@@ -1,26 +1,17 @@
 extends MarginContainer
 
 
-onready var res = [Vector2(1280,720),Vector2(1600,900),Vector2(1920,1080),Vector2(2560,1440),Vector2(3840,2160)]
-onready var vol = [0, 25, 50, 75, 100]
-
+var settings
 signal back()
-signal change_resolution(new_res)
-signal change_volume(new_vol)
-signal skip_intro(new_skip)
 
 
-func initialize():
-	var config = ConfigFile.new()
-	var err = config.load("user://settings.cfg")
-	if err == OK:
-		$HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer2/ResolutionOB.selected = config.get_value("graphics", "resolution_id")
-		$HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer3/FullscreenCB.pressed = config.get_value("graphics", "fullscreen")
-		$HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer6/VsyncCB.pressed = config.get_value("graphics", "vsync")
-		$HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer4/VolumeOB.selected = config.get_value("audio", "volume_id")
-		$HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer5/SkipCB.pressed = config.get_value("game", "skip_intro")
-	else:
-		print("Error " + err + " loading ConfigFile")
+func initialize(new_settings):
+	settings = new_settings
+	$HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer2/ResolutionOB.selected = settings.get_resolution_id()
+	$HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer3/FullscreenCB.pressed = settings.get_fullscreen()
+	$HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer6/VsyncCB.pressed = settings.get_vsync()
+	$HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer4/VolumeOB.selected = settings.get_volume_id()
+	$HBoxContainer/VBoxContainer/DisplayOptions/HBoxContainer5/SkipCB.pressed = settings.get_skip_intro()
 
 
 func _on_BackButton_pressed():
@@ -28,58 +19,21 @@ func _on_BackButton_pressed():
 
 
 func _on_ResolutionOB_item_selected(index):
-	var config = ConfigFile.new()
-	var err = config.load("user://settings.cfg")
-	if err == OK:
-		config.set_value("graphics", "resolution_width", int(res[index].x))
-		config.set_value("graphics", "resolution_height", int(res[index].y))
-		config.set_value("graphics", "resolution_id", index)
-		config.save("user://settings.cfg")
-	else:
-		print("Error " + err + " loading ConfigFile")
-	emit_signal("change_resolution", res[index])
+	settings.set_resolution(index)
 
 
 func _on_FullscreenCB_toggled(button_pressed):
-	var config = ConfigFile.new()
-	var err = config.load("user://settings.cfg")
-	if err == OK:
-		config.set_value("graphics", "fullscreen", button_pressed)
-		config.save("user://settings.cfg")
-	else:
-		print("Error " + err + " loading ConfigFile")
-	OS.window_fullscreen = button_pressed
+	settings.set_fullscreen(button_pressed)
 
 
 func _on_VsyncCB_toggled(button_pressed):
-	var config = ConfigFile.new()
-	var err = config.load("user://settings.cfg")
-	if err == OK:
-		config.set_value("graphics", "vsync", button_pressed)
-		config.save("user://settings.cfg")
-	else:
-		print("Error " + err + " loading ConfigFile")
-	OS.vsync_enabled = button_pressed
+	settings.set_vsync(button_pressed)
 
 
 func _on_VolumeOB_item_selected(index):
-	var config = ConfigFile.new()
-	var err = config.load("user://settings.cfg")
-	if err == OK:
-		config.set_value("audio", "volume", vol[index])
-		config.set_value("audio", "volume_id", index)
-		config.save("user://settings.cfg")
-	else:
-		print("Error " + err + " loading ConfigFile")
-	emit_signal("change_volume", vol[index])
+	settings.set_volume(index)
 
 
 func _on_SkipCB_toggled(button_pressed):
-	var config = ConfigFile.new()
-	var err = config.load("user://settings.cfg")
-	if err == OK:
-		config.set_value("game", "skip_intro", button_pressed)
-		config.save("user://settings.cfg")
-	else:
-		print("Error " + err + " loading ConfigFile")
-	emit_signal("skip_intro", button_pressed)
+	settings.set_skip_intro(button_pressed)
+

@@ -13,7 +13,7 @@ func _ready():
 	$Settings.initialize()
 	$Background.initialize()
 	ini_position = $HexagonMatrix.initialize()
-	$Menu.initialize()
+	$Menu.initialize($Settings)
 	$HUD.initialize()
 	#print(str(ini_position))
 
@@ -70,22 +70,6 @@ func _on_Hexagon_scored(add_score):
 	print("Scored: " + str(add_score))
 	score += add_score
 	$HUD.update_score(score, add_score)
-
-
-# TODO: change HexagonMatrix resolution
-func _on_Menu_change_resolution(new_res):
-	print(new_res)
-	OS.set_window_size(new_res)
-	print(get_viewport().size)
-
-
-func _on_Menu_change_volume(new_vol):
-	volume = new_vol
-	print(str(volume))
-
-
-func _on_Menu_skip_intro(new_skip):
-	skip_intro = new_skip
 
 
 func _on_Menu_name_record(new_name):
