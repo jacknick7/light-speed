@@ -2,31 +2,21 @@ extends Node
 
 
 signal start_game(easy)
-signal name_record(new_name)
 
 
-func initialize(settings = null):
-	if settings != null: $OptionsMenu.initialize(settings)
+func initialize(leaderboard, settings):
+	$OverMenu.set_leaderboard(leaderboard)
+	$OptionsMenu.initialize(settings)
 	$MainMenu.show()
 	$MainMenu.initialize()
 
 
-func game_over_init(score, diff):
+func game_over(score, diff):
 	$BlurColorRect.show()
 	$OverMenu.display_score(score)
 	$OverMenu.display_difficulty(diff)
+	$OverMenu.handle_lb(score, diff)
 	$OverMenu.show()
-
-
-func game_over_lb(lb):
-	$OverMenu.display_lb(lb)
-	yield(get_tree().create_timer(3), "timeout")
-	$OverMenu.hide()
-	initialize()
-
-
-func game_over_record():
-	$OverMenu.display_record()
 
 
 func _on_MainMenu_start():
@@ -75,6 +65,9 @@ func _on_OptionsMenu_back():
 	$MainMenu.show()
 
 
-func _on_OverMenu_name_record(new_name):
-	emit_signal("name_record", new_name)
+func _on_OverMenu_game_over_end():
+	yield(get_tree().create_timer(3), "timeout")
+	$OverMenu.hide()
+	$MainMenu.show()
+	$MainMenu.initialize()
 

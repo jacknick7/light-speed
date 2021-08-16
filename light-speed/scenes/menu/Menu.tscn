@@ -49,4 +49,4 @@ visible = false
 [connection signal="back" from="InstructionsMenu" to="." method="_on_InstructionsMenu_back"]
 [connection signal="back" from="OptionsMenu" to="." method="_on_OptionsMenu_back"]
 [connection signal="back" from="CreditsMenu" to="." method="_on_CreditsMenu_back"]
-[connection signal="name_record" from="OverMenu" to="." method="_on_OverMenu_name_record"]
+[connection signal="game_over_end" from="OverMenu" to="." method="_on_OverMenu_game_over_end"]

@@ -18,7 +18,23 @@ onready var score_labels = [
 onready var nameLE = $VBoxContainer/CenterContainer2/VBoxContainer2/LineEdit
 onready var scoreLabel = $VBoxContainer/CenterContainer/VBoxContainer/ScoreLabel
 onready var diffLabel = $VBoxContainer/CenterContainer2/VBoxContainer/DiffLabel
-signal name_record(new_name)
+var leaderboard
+var tmp_score
+var tmp_diff
+signal game_over_end()
+
+
+func set_leaderboard(lb):
+	leaderboard = lb
+
+
+func handle_lb(score, diff):
+	tmp_score = score
+	tmp_diff = diff
+	if leaderboard.is_record(score, diff): display_record()
+	else: 
+		display_lb(leaderboard.get_lb(diff))
+		emit_signal("game_over_end")
 
 
 func display_record():
@@ -62,7 +78,9 @@ func _on_EnterButton_pressed():
 		yield(get_tree().create_timer(1), "timeout")
 		nameLE.text = ""
 	else:
-		emit_signal("name_record", nameLE.text)
+		leaderboard.update_store_lb(tmp_score, name, tmp_diff)
+		display_lb(leaderboard.get_lb(tmp_diff))
 		$VBoxContainer/CenterContainer2/VBoxContainer.show()
 		$VBoxContainer/CenterContainer2/VBoxContainer2.hide()
+		emit_signal("game_over_end")
 

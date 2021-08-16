@@ -13,7 +13,7 @@ func _ready():
 	$Settings.initialize()
 	$Background.initialize()
 	ini_position = $HexagonMatrix.initialize()
-	$Menu.initialize($Settings)
+	$Menu.initialize($Leaderboard, $Settings)
 	$HUD.initialize()
 	#print(str(ini_position))
 
@@ -45,9 +45,7 @@ func game_over():
 	$HexagonMatrix.game_over(self)
 	var diff = "Normal"
 	if easy: diff = "Easy"
-	if $Leaderboard.is_record(score, diff): $Menu.game_over_record()
-	else: $Menu.game_over_lb($Leaderboard.get_lb(diff))
-	$Menu.game_over_init(score, diff)
+	$Menu.game_over(score, diff)
 
 
 func _on_UpdateTimer_timeout():
@@ -71,9 +69,3 @@ func _on_Hexagon_scored(add_score):
 	score += add_score
 	$HUD.update_score(score, add_score)
 
-
-func _on_Menu_name_record(new_name):
-	var diff = "Normal"
-	if easy: diff = "Easy"
-	$Leaderboard.update_store_lb(score, new_name, diff)
-	$Menu.game_over_lb($Leaderboard.get_lb(diff))
