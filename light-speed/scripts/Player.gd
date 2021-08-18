@@ -1,18 +1,21 @@
 extends Node
 
 
+var playing
 var easy
 var velocity
-const max_velocity = 0.125
-var playing
+const MAX_VELOCITY = 0.125
+const ACC_VELOCITY = 0.25
+const DACC_VELOCITY = 0.25
+const ROT_POINTS = [
+	PI / 12, PI / 4, (5 * PI) / 12, (7 * PI) / 12, (3 * PI) / 4, (11 * PI) / 12,
+	(13 * PI) / 12, (5 * PI) / 4, (17 * PI) / 12, (19 * PI) / 12, (7 * PI) / 4,
+	(23 * PI) / 12
+]
 
 
-func _ready():
+func initialize():
 	playing = false
-	$PlayerShip/AnimatedSprite.animation = "idle"
-	velocity = 0
-	easy = true
-	update_position_easy()
 	$PlayerShip.hide()
 	$PlayerShipNext.hide()
 
@@ -20,8 +23,7 @@ func _ready():
 # TODO: adjust the multipliers to delta for best inherce feeling & control
 # TODO: improve ship jump by adding its own animation & sound
 func _process(delta):
-	if playing:
-		handle_input(delta)
+	if playing: handle_input(delta)
 
 
 func handle_input(delta):
@@ -33,16 +35,16 @@ func handle_input(delta):
 			update_position_easy()
 	elif Input.is_action_pressed("ui_right"):
 		$PlayerShip/AnimatedSprite.animation = "turn_left"
-		velocity = min(velocity + (delta * 0.25), max_velocity)
+		velocity = min(velocity + (delta * ACC_VELOCITY), MAX_VELOCITY)
 	elif Input.is_action_pressed("ui_left"):
 		$PlayerShip/AnimatedSprite.animation = "turn_right"
-		velocity = max(velocity - (delta * 0.25), -max_velocity)
+		velocity = max(velocity - (delta * ACC_VELOCITY), -MAX_VELOCITY)
 	else:
 		$PlayerShip/AnimatedSprite.animation = "idle"
 		if velocity > 0:
-			velocity = max(velocity - (delta * 0.25), 0)
+			velocity = max(velocity - (delta * DACC_VELOCITY), 0)
 		elif velocity < 0:
-			velocity = min(velocity + (delta * 0.25), 0)
+			velocity = min(velocity + (delta * DACC_VELOCITY), 0)
 	if velocity != 0:
 		$PlayerShip.rotation += velocity
 		# Make rotation between [0,2*PI]
@@ -66,46 +68,32 @@ func update_position_easy():
 # after some displacements
 func new_position():
 	var new_pos
-	if $PlayerShip.rotation >= (PI / 12) && $PlayerShip.rotation < (PI / 4):
-		new_pos = Vector2(128,-192)
-	elif $PlayerShip.rotation >= (PI / 4) && $PlayerShip.rotation < ((5 * PI) / 12):
-		new_pos = Vector2(192,-96)
-	elif $PlayerShip.rotation >= ((5 * PI) / 12) && $PlayerShip.rotation < ((7 * PI) / 12):
-		new_pos = Vector2(256,0)
-	elif $PlayerShip.rotation >= ((7 * PI) / 12) && $PlayerShip.rotation < ((3 * PI) / 4):
-		new_pos = Vector2(192,96)
-	elif $PlayerShip.rotation >= ((3 * PI) / 4) && $PlayerShip.rotation < ((11 * PI) / 12):
-		new_pos = Vector2(128,192)
-	elif $PlayerShip.rotation >= ((11 * PI) / 12) && $PlayerShip.rotation < ((13 * PI) / 12):
-		new_pos = Vector2(0,192)
-	elif $PlayerShip.rotation >= ((13 * PI) / 12) && $PlayerShip.rotation < ((5 * PI) / 4):
-		new_pos = Vector2(-128,192)
-	elif $PlayerShip.rotation >= ((5 * PI) / 4) && $PlayerShip.rotation < ((17 * PI) / 12):
-		new_pos = Vector2(-192,96)
-	elif $PlayerShip.rotation >= ((17 * PI) / 12) && $PlayerShip.rotation < ((19 * PI) / 12):
-		new_pos = Vector2(-256,0)
-	elif $PlayerShip.rotation >= ((19 * PI) / 12) && $PlayerShip.rotation < ((7 * PI) / 4):
-		new_pos = Vector2(-192,-96)
-	elif $PlayerShip.rotation >= ((7 * PI) / 4) && $PlayerShip.rotation < ((23 * PI) / 12):
-		new_pos = Vector2(-128,-192)
-	else: # $PlayerShip.rotation in [(23 * PI) / 12, PI / 12)
-		new_pos = Vector2(0,-192)
-	#print("new_pos: " + str(new_pos))
+	var ps_rot = $PlayerShip.rotation
+	if ps_rot >= ROT_POINTS[0] && ps_rot < ROT_POINTS[1]: new_pos = Vector2(128,-192)
+	elif ps_rot >= ROT_POINTS[1] && ps_rot < ROT_POINTS[2]: new_pos = Vector2(192,-96)
+	elif ps_rot >= ROT_POINTS[2] && ps_rot < ROT_POINTS[3]: new_pos = Vector2(256,0)
+	elif ps_rot >= ROT_POINTS[3] && ps_rot < ROT_POINTS[4]: new_pos = Vector2(192,96)
+	elif ps_rot >= ROT_POINTS[4] && ps_rot < ROT_POINTS[5]: new_pos = Vector2(128,192)
+	elif ps_rot >= ROT_POINTS[5] && ps_rot < ROT_POINTS[6]: new_pos = Vector2(0,192)
+	elif ps_rot >= ROT_POINTS[6] && ps_rot < ROT_POINTS[7]: new_pos = Vector2(-128,192)
+	elif ps_rot >= ROT_POINTS[7] && ps_rot < ROT_POINTS[8]: new_pos = Vector2(-192,96)
+	elif ps_rot >= ROT_POINTS[8] && ps_rot < ROT_POINTS[9]: new_pos = Vector2(-256,0)
+	elif ps_rot >= ROT_POINTS[9] && ps_rot < ROT_POINTS[10]: new_pos = Vector2(-192,-96)
+	elif ps_rot >= ROT_POINTS[10] && ps_rot < ROT_POINTS[11]: new_pos = Vector2(-128,-192)
+	else:  new_pos = Vector2(0,-192) # $PlayerShip.rotation in [(23 * PI) / 12, PI / 12)
 	return new_pos
 
 
-func start_game(dif, pos):
-	easy = dif
+func start_game(diff, pos):
+	easy = diff
 	playing = true
 	velocity = 0
 	$PlayerShip.position = pos
-	#print(str($PlayerShip.position))
-	#print(str($PlayerShip.position.x/128) + ' ' + str($PlayerShip.position.y/96))
 	$PlayerShip.rotation = 0
 	$PlayerShip.show()
 	if easy:
-		$PlayerShipNext.show()
 		update_position_easy()
+		$PlayerShipNext.show()
 	# If done inmediatly player collides with previous hexagon type, look if this can be handle better
 	yield(get_tree().create_timer(0.001), "timeout")
 	$PlayerShip/CollisionShape2D.disabled = false
@@ -115,8 +103,7 @@ func game_over():
 	playing = false
 	$PlayerShip/AnimatedSprite.animation = "destroyed"
 	$PlayerShip/CollisionShape2D.set_deferred("disabled", true)
-	if (easy):
-		$PlayerShipNext.hide()
+	if easy: $PlayerShipNext.hide()
 	yield(get_tree().create_timer(4), "timeout")
 	$PlayerShip.hide()
 

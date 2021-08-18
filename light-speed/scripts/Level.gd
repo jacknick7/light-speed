@@ -13,6 +13,7 @@ func _ready():
 	$Settings.initialize()
 	$Background.initialize()
 	ini_position = $HexagonMatrix.initialize()
+	$Player.initialize()
 	$Menu.initialize($Leaderboard, $Settings)
 	$HUD.initialize()
 	#print(str(ini_position))
