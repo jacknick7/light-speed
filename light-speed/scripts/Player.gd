@@ -59,13 +59,10 @@ func handle_input(delta):
 
 func update_position_easy():
 	var new_pos = new_position()
-	#print(str($PlayerShip.rotation) + ' ' + str(new_pos))
 	$PlayerShipNext.rotation = $PlayerShip.rotation
 	$PlayerShipNext.position = $PlayerShip.position + new_pos
 
 
-# TODO: find out why the ship's position starts deviating from the center of the hexagon
-# after some displacements
 func new_position():
 	var new_pos
 	var ps_rot = $PlayerShip.rotation
@@ -89,7 +86,8 @@ func start_game(diff, pos):
 	playing = true
 	velocity = 0
 	$PlayerShip.position = pos
-	$PlayerShip.rotation = 0
+	$PlayerShip.rotation = 0	
+	$PlayerShip/AnimatedSprite.animation = "idle"
 	$PlayerShip.show()
 	if easy:
 		update_position_easy()
@@ -113,3 +111,4 @@ func trigger_hexagon():
 	# maybe there's a better way to do this?
 	$PlayerShip/CollisionShape2D.set_deferred("disabled", true)
 	$PlayerShip/CollisionShape2D.set_deferred("disabled", false)
+
