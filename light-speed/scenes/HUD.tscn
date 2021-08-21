@@ -48,6 +48,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="SLLabel" type="Label" parent="VBoxContainer"]
+margin_top = 442.0
+margin_right = 1480.0
+margin_bottom = 486.0
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 1 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Timer" type="Timer" parent="."]
 
+[node name="SLTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="SLTimer" to="." method="_on_SLTimer_timeout"]

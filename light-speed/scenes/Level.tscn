@@ -31,6 +31,7 @@ wait_time = 5.0
 
 [node name="Settings" parent="." instance=ExtResource( 8 )]
 
+[connection signal="screen_limits" from="Player" to="." method="_on_Player_screen_limits"]
 [connection signal="timeout" from="UpdateTimer" to="." method="_on_UpdateTimer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="start_game" from="Menu" to="." method="start_game"]

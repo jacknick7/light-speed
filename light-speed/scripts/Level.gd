@@ -70,3 +70,6 @@ func _on_Hexagon_scored(add_score):
 	score += add_score
 	$HUD.update_score(score, add_score)
 
+
+func _on_Player_screen_limits():
+	$HUD.display_screen_limits()

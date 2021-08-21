@@ -12,6 +12,7 @@ const ROT_POINTS = [
 	(13 * PI) / 12, (5 * PI) / 4, (17 * PI) / 12, (19 * PI) / 12, (7 * PI) / 4,
 	(23 * PI) / 12
 ]
+signal screen_limits
 
 
 func initialize():
@@ -28,11 +29,11 @@ func _process(delta):
 
 func handle_input(delta):
 	if Input.is_action_just_pressed("ui_select"):
-		$PlayerShip.position += new_position()
-		#print(str($PlayerShip.position))
-		#print(str($PlayerShip.position.x/128) + ' ' + str($PlayerShip.position.y/96))
-		if easy:
-			update_position_easy()
+		var next_position = new_position()
+		if is_inside_screen($PlayerShip.position + next_position):
+			$PlayerShip.position += next_position
+			if easy: update_position_easy()
+		else: emit_signal("screen_limits")
 	elif Input.is_action_pressed("ui_right"):
 		$PlayerShip/AnimatedSprite.animation = "turn_left"
 		velocity = min(velocity + (delta * ACC_VELOCITY), MAX_VELOCITY)
@@ -61,6 +62,13 @@ func update_position_easy():
 	var new_pos = new_position()
 	$PlayerShipNext.rotation = $PlayerShip.rotation
 	$PlayerShipNext.position = $PlayerShip.position + new_pos
+
+
+func is_inside_screen(pos):
+	if (pos.x < 0) || (pos.y < 0): return false
+	var screen_size = get_viewport().size
+	if (pos.x > screen_size.x) || (pos.y > screen_size.y): return false
+	return true
 
 
 func new_position():
