@@ -8,10 +8,13 @@ var short_jump
 const MAX_VELOCITY = 0.125
 const ACC_VELOCITY = 0.25
 const DACC_VELOCITY = 0.25
-const ROT_POINTS = [
+const ROT_POINTS_LONG = [
 	PI / 12, PI / 4, (5 * PI) / 12, (7 * PI) / 12, (3 * PI) / 4, (11 * PI) / 12,
 	(13 * PI) / 12, (5 * PI) / 4, (17 * PI) / 12, (19 * PI) / 12, (7 * PI) / 4,
 	(23 * PI) / 12
+]
+const ROT_POINTS_SHORT = [
+	0, PI / 3, (2 * PI) / 3, PI, (4 * PI) / 3, (5 * PI) / 3
 ]
 signal screen_limits
 
@@ -73,20 +76,25 @@ func new_position():
 	var new_pos
 	var ps_rot = $PlayerShip.rotation
 	if short_jump:
-		pass
+		if ps_rot >= ROT_POINTS_SHORT[0] && ps_rot < ROT_POINTS_SHORT[1]: new_pos = Vector2(64,-96)
+		elif ps_rot >= ROT_POINTS_SHORT[1] && ps_rot < ROT_POINTS_SHORT[2]: new_pos = Vector2(128,0)
+		elif ps_rot >= ROT_POINTS_SHORT[2] && ps_rot < ROT_POINTS_SHORT[3]: new_pos = Vector2(64,96)
+		elif ps_rot >= ROT_POINTS_SHORT[3] && ps_rot < ROT_POINTS_SHORT[4]: new_pos = Vector2(-64,96)
+		elif ps_rot >= ROT_POINTS_SHORT[4] && ps_rot < ROT_POINTS_SHORT[5]: new_pos = Vector2(-128,0)
+		else: new_pos = Vector2(-64,-96) # $PlayerShip.rotation in [(5 * PI) / 3, 2 * PI)
 	else:
-		if ps_rot >= ROT_POINTS[0] && ps_rot < ROT_POINTS[1]: new_pos = Vector2(128,-192)
-		elif ps_rot >= ROT_POINTS[1] && ps_rot < ROT_POINTS[2]: new_pos = Vector2(192,-96)
-		elif ps_rot >= ROT_POINTS[2] && ps_rot < ROT_POINTS[3]: new_pos = Vector2(256,0)
-		elif ps_rot >= ROT_POINTS[3] && ps_rot < ROT_POINTS[4]: new_pos = Vector2(192,96)
-		elif ps_rot >= ROT_POINTS[4] && ps_rot < ROT_POINTS[5]: new_pos = Vector2(128,192)
-		elif ps_rot >= ROT_POINTS[5] && ps_rot < ROT_POINTS[6]: new_pos = Vector2(0,192)
-		elif ps_rot >= ROT_POINTS[6] && ps_rot < ROT_POINTS[7]: new_pos = Vector2(-128,192)
-		elif ps_rot >= ROT_POINTS[7] && ps_rot < ROT_POINTS[8]: new_pos = Vector2(-192,96)
-		elif ps_rot >= ROT_POINTS[8] && ps_rot < ROT_POINTS[9]: new_pos = Vector2(-256,0)
-		elif ps_rot >= ROT_POINTS[9] && ps_rot < ROT_POINTS[10]: new_pos = Vector2(-192,-96)
-		elif ps_rot >= ROT_POINTS[10] && ps_rot < ROT_POINTS[11]: new_pos = Vector2(-128,-192)
-		else:  new_pos = Vector2(0,-192) # $PlayerShip.rotation in [(23 * PI) / 12, PI / 12)
+		if ps_rot >= ROT_POINTS_LONG[0] && ps_rot < ROT_POINTS_LONG[1]: new_pos = Vector2(128,-192)
+		elif ps_rot >= ROT_POINTS_LONG[1] && ps_rot < ROT_POINTS_LONG[2]: new_pos = Vector2(192,-96)
+		elif ps_rot >= ROT_POINTS_LONG[2] && ps_rot < ROT_POINTS_LONG[3]: new_pos = Vector2(256,0)
+		elif ps_rot >= ROT_POINTS_LONG[3] && ps_rot < ROT_POINTS_LONG[4]: new_pos = Vector2(192,96)
+		elif ps_rot >= ROT_POINTS_LONG[4] && ps_rot < ROT_POINTS_LONG[5]: new_pos = Vector2(128,192)
+		elif ps_rot >= ROT_POINTS_LONG[5] && ps_rot < ROT_POINTS_LONG[6]: new_pos = Vector2(0,192)
+		elif ps_rot >= ROT_POINTS_LONG[6] && ps_rot < ROT_POINTS_LONG[7]: new_pos = Vector2(-128,192)
+		elif ps_rot >= ROT_POINTS_LONG[7] && ps_rot < ROT_POINTS_LONG[8]: new_pos = Vector2(-192,96)
+		elif ps_rot >= ROT_POINTS_LONG[8] && ps_rot < ROT_POINTS_LONG[9]: new_pos = Vector2(-256,0)
+		elif ps_rot >= ROT_POINTS_LONG[9] && ps_rot < ROT_POINTS_LONG[10]: new_pos = Vector2(-192,-96)
+		elif ps_rot >= ROT_POINTS_LONG[10] && ps_rot < ROT_POINTS_LONG[11]: new_pos = Vector2(-128,-192)
+		else: new_pos = Vector2(0,-192) # $PlayerShip.rotation in [(23 * PI) / 12, PI / 12)
 	return new_pos
 
 
