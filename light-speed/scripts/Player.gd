@@ -17,6 +17,7 @@ const ROT_POINTS_SHORT = [
 	0, PI / 3, (2 * PI) / 3, PI, (4 * PI) / 3, (5 * PI) / 3
 ]
 signal screen_limits
+signal jump_change
 
 
 func initialize():
@@ -34,6 +35,7 @@ func _process(delta):
 func handle_input(delta):
 	if Input.is_action_just_pressed("ui_up"):
 		short_jump = !short_jump
+		emit_signal("jump_change")
 		if easy: update_position_easy()
 	elif Input.is_action_just_pressed("ui_select"):
 		var next_position = new_position()
