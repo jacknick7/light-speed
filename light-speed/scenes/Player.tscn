@@ -73,7 +73,7 @@ script = ExtResource( 7 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="PlayerShip"]
 scale = Vector2( 0.1, 0.1 )
 frames = SubResource( 1 )
-animation = "teleport"
+animation = "idle"
 frame = 1
 playing = true
 
@@ -91,3 +91,6 @@ playing = true
 [node name="PlayerTeleport" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.1, 0.1 )
 frames = SubResource( 4 )
+
+[connection signal="animation_finished" from="PlayerShip/AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="animation_finished" from="PlayerTeleport" to="." method="_on_PlayerTeleport_animation_finished"]

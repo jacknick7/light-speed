@@ -24,6 +24,7 @@ func initialize():
 	playing = false
 	$PlayerShip.hide()
 	$PlayerShipNext.hide()
+	$PlayerTeleport.hide()
 
 
 # TODO: adjust the multipliers to delta for best inherce feeling & control
@@ -40,17 +41,21 @@ func handle_input(delta):
 	elif Input.is_action_just_pressed("ui_select"):
 		var next_position = new_position()
 		if is_inside_screen($PlayerShip.position + next_position):
+			teleport()
 			$PlayerShip.position += next_position
 			if easy: update_position_easy()
 		else: emit_signal("screen_limits")
 	elif Input.is_action_pressed("ui_right"):
-		if $PlayerShip/AnimatedSprite.animation != "turn_left": $PlayerShip/AnimatedSprite.animation = "turn_left"
+		if $PlayerShip/AnimatedSprite.animation != "turn_left":
+			if $PlayerShip/AnimatedSprite.animation != "teleport": $PlayerShip/AnimatedSprite.animation = "turn_left"
 		velocity = min(velocity + (delta * ACC_VELOCITY), MAX_VELOCITY)
 	elif Input.is_action_pressed("ui_left"):
-		if $PlayerShip/AnimatedSprite.animation != "turn_right": $PlayerShip/AnimatedSprite.animation = "turn_right"
+		if $PlayerShip/AnimatedSprite.animation != "turn_right": 
+			if $PlayerShip/AnimatedSprite.animation != "teleport": $PlayerShip/AnimatedSprite.animation = "turn_right"
 		velocity = max(velocity - (delta * ACC_VELOCITY), -MAX_VELOCITY)
 	else:
-		if $PlayerShip/AnimatedSprite.animation != "idle": $PlayerShip/AnimatedSprite.animation = "idle"
+		if $PlayerShip/AnimatedSprite.animation != "idle":
+			if $PlayerShip/AnimatedSprite.animation != "teleport": $PlayerShip/AnimatedSprite.animation = "idle"
 		if velocity > 0: velocity = max(velocity - (delta * DACC_VELOCITY), 0)
 		elif velocity < 0: velocity = min(velocity + (delta * DACC_VELOCITY), 0)
 	if velocity != 0:
@@ -100,6 +105,15 @@ func new_position():
 	return new_pos
 
 
+func teleport():
+	$PlayerTeleport.position = $PlayerShip.position
+	$PlayerTeleport.rotation = $PlayerShip.rotation
+	$PlayerTeleport.frame = 0
+	$PlayerTeleport.playing = true
+	$PlayerTeleport.show()
+	$PlayerShip/AnimatedSprite.animation = "teleport"
+
+
 func start_game(diff, pos):
 	easy = diff
 	playing = true
@@ -118,6 +132,7 @@ func start_game(diff, pos):
 
 
 func game_over():
+	$PlayerTeleport.hide()
 	playing = false
 	$PlayerShip/AnimatedSprite.animation = "destroyed"
 	$PlayerShip/CollisionShape2D.set_deferred("disabled", true)
@@ -132,3 +147,11 @@ func trigger_hexagon():
 	$PlayerShip/CollisionShape2D.set_deferred("disabled", true)
 	$PlayerShip/CollisionShape2D.set_deferred("disabled", false)
 
+
+func _on_PlayerTeleport_animation_finished():
+	$PlayerTeleport.hide()
+
+
+
+func _on_AnimatedSprite_animation_finished():
+	if $PlayerShip/AnimatedSprite.animation == "teleport": $PlayerShip/AnimatedSprite.animation = "idle"
