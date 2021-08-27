@@ -57,34 +57,26 @@ custom_constants/separation = 30
 alignment = 1
 
 [node name="CreditsLabel" type="Label" parent="HBoxContainer/VBoxContainer/DisplayCredits"]
-margin_top = 188.0
+margin_top = 124.0
 margin_right = 1133.0
-margin_bottom = 255.0
+margin_bottom = 191.0
 custom_fonts/font = SubResource( 2 )
 text = "Credits:"
 
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/DisplayCredits"]
-margin_top = 285.0
+margin_top = 221.0
 margin_right = 1133.0
-margin_bottom = 308.0
+margin_bottom = 478.0
 custom_fonts/font = SubResource( 3 )
-text = "A game by BishopBit"
-autowrap = true
+text = "A game by BishopBit
 
-[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/DisplayCredits"]
-margin_top = 338.0
-margin_right = 1133.0
-margin_bottom = 361.0
-custom_fonts/font = SubResource( 3 )
-text = "Made with Godot 3.2"
-autowrap = true
+Made with Godot 3.2
 
-[node name="Label3" type="Label" parent="HBoxContainer/VBoxContainer/DisplayCredits"]
-margin_top = 391.0
-margin_right = 1133.0
-margin_bottom = 414.0
-custom_fonts/font = SubResource( 3 )
-text = "Special thanks to..."
+Background images by Hristo Fidanov, Felix Mittermeier, Jacub Gomez, Miriam Espacio, Philippe Donn and Pixabay
+
+Music by
+
+Sounds from"
 autowrap = true
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
