@@ -14,22 +14,28 @@ signal damaged
 signal scored(add_score)
 
 
-func _ready():
-	if type == null:
-		set_type(DAMAGE)
+func initialize(new_pos, new_type):
 	# Change initial time of each hexagon to generate a special effect with the breathing?
 	time = 0
 	original_scale = scale
+	set_position(new_pos)
+	set_type(new_type)
 
 
 func _process(delta):
+	breathing_effect(delta)
+
+
+func breathing_effect(delta):
 	# Breathing effect by modifing hexagon scale
 	time += delta
-	if time >= (2 * PI):
-		time = time - (2 * PI)
+	if time >= (2 * PI): time = time - (2 * PI)
 	var offset_scale = 0.015 + (sin(time) * 0.015) # offset_scale: [0,0.3]
 	scale = original_scale - Vector2(offset_scale,offset_scale)
 
+
+func set_position(new_pos):
+	position = new_pos
 
 func set_type(new_type):
 	type = new_type
@@ -51,8 +57,10 @@ func set_type(new_type):
 			type_str = "empty"
 			score = 0
 	$AnimatedSprite.set_animation(type_str)
-	var rand_frame = randi() % $AnimatedSprite.get_sprite_frames().get_frame_count("damage")
-	$AnimatedSprite.set_frame(rand_frame)
+	if not type == EMPTY: # Empty has no frames
+		var n_frames = $AnimatedSprite.get_sprite_frames().get_frame_count(type_str)
+		var rand_frame = randi() % n_frames
+		$AnimatedSprite.set_frame(rand_frame)
 
 
 func get_type():
@@ -61,8 +69,6 @@ func get_type():
 
 func _on_Hexagon_body_entered(_body):
 	print("player collide with hexagon of type " + str(type))
-	if type == DAMAGE:
-		emit_signal("damaged")
-	elif type != EMPTY:
-		emit_signal("scored", score)
+	if type == DAMAGE: emit_signal("damaged")
+	elif type != EMPTY: emit_signal("scored", score)
 

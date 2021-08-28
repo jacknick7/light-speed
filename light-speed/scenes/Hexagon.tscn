@@ -30,6 +30,11 @@ animations = [ {
 "name": "score0",
 "speed": 8.0
 }, {
+"frames": [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "score1",
+"speed": 8.0
+}, {
 "frames": [ ExtResource( 4 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 16 ), ExtResource( 16 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "damage",
@@ -38,11 +43,6 @@ animations = [ {
 "frames": [ ExtResource( 12 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "score2",
-"speed": 8.0
-}, {
-"frames": [ ExtResource( 13 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "score1",
 "speed": 8.0
 } ]
 
@@ -56,7 +56,7 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "damage"
-frame = 3
+frame = 7
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

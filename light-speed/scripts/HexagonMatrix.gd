@@ -32,8 +32,7 @@ func initialize():
 			if i % 2 != 0:
 				pos_x += 64
 			var pos_y = i * 96
-			hexagon.position = Vector2(pos_x,pos_y)
-			hexagon.set_type(make_choice())
+			hexagon.initialize(Vector2(pos_x,pos_y), make_choice())
 			hexagon_matrix.append(hexagon)
 			add_child(hexagon)
 	var ini_pos = Vector2(int(hexagons_m / 2) * 128, int(hexagons_n / 2) * 96)
